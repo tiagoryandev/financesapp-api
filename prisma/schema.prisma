@@ -1,8 +1,91 @@
 generator client {
-  provider = "prisma-client-js"
+    provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model User {
+    id         String   @id @default(uuid())
+    first_name String
+    last_name  String
+    email      String   @unique()
+    is_checked Boolean  @default(false)
+    password   String
+    created_at DateTime @default(now())
+    updated_at DateTime @default(now())
+
+    Category       Category[]
+    Item           Item[]
+    log_users      LogUser[]
+    log_categories LogCategory[]
+    log_items      LogItem[]
+    @@map("users")
+}
+
+model Item {
+    id          String   @id @default(uuid())
+    user_id     String
+    title       String
+    note        String
+    value       Float
+    category_id String
+    created_at  DateTime @default(now())
+    updated_at  DateTime @default(now())
+
+    user      User?     @relation(fields: [user_id], references: [id])
+    category  Category? @relation(fields: [category_id], references: [id], onDelete: Cascade)
+    log_items LogItem[]
+    @@map("items")
+}
+
+model Category {
+    id         String   @id @default(uuid())
+    user_id    String
+    name       String
+    type       String
+    created_at DateTime @default(now())
+    updated_at DateTime @default(now())
+
+    user User? @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+    Item           Item[]
+    log_categories LogCategory[]
+    @@map("categories")
+}
+
+model LogUser {
+    id         Int      @id @default(autoincrement())
+    user_id    String
+    type       String
+    created_at DateTime @default(now())
+
+    user User? @relation(fields: [user_id], references: [id])
+    @@map("log_users")
+}
+
+model LogCategory {
+    id          Int      @id @default(autoincrement())
+    user_id     String
+    category_id String
+    type        String
+    created_at  DateTime @default(now())
+
+    user     User?     @relation(fields: [user_id], references: [id])
+    category Category? @relation(fields: [category_id], references: [id])
+    @@map("log_categories")
+}
+
+model LogItem {
+    id         Int      @id @default(autoincrement())
+    user_id    String
+    item_id    String
+    type       String
+    created_at DateTime @default(now())
+
+    user User? @relation(fields: [user_id], references: [id])
+    item Item? @relation(fields: [item_id], references: [id])
+    @@map("log_items")
 }

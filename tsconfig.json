@@ -22,6 +22,7 @@
     "skipLibCheck": true
   },
   "exclude": [
-    "commitlint.config.js"
+    "commitlint.config.js",
+    "jest.config.ts"
   ]
 }

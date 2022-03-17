@@ -12,7 +12,8 @@
     "husky:pcm": "exec < /dev/tty && git-cz --hook || true",
     "dev": "npm run prisma:dev && ts-node-dev --respawn --transpile-only --ignore-watch ./node_modules ./src/server.ts",
     "build": "npm run clean && npm run prisma:deploy && tsc --project ./tsconfig.json",
-    "start": "node ."
+    "start": "node .",
+    "test": "jest"
   },
   "keywords": [],
   "author": "Tiago Ryan <tiagoinsany@gmail.com>",
@@ -25,6 +26,7 @@
     "@types/express": "^4.17.13",
     "@types/express-rate-limit": "^6.0.0",
     "@types/express-slow-down": "^1.3.2",
+    "@types/jest": "^27.4.1",
     "@types/jsonwebtoken": "^8.5.8",
     "@types/node": "^17.0.21",
     "@types/uuid": "^8.3.4",
@@ -34,9 +36,11 @@
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.11.0",
     "husky": "^7.0.4",
+    "jest": "^27.5.1",
     "lint-staged": "^12.3.6",
     "prisma": "^3.11.0",
     "rimraf": "^3.0.2",
+    "ts-jest": "^27.1.3",
     "ts-node-dev": "^1.1.8",
     "typescript": "^4.6.2"
   },
