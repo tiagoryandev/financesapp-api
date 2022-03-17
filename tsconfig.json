@@ -7,7 +7,10 @@
     "module": "commonjs",
     "rootDir": "./src",
     "moduleResolution": "node",
-    "typeRoots": [], 
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/@types"
+    ], 
     "resolveJsonModule": true, 
     "allowJs": true,
     "checkJs": false,
@@ -17,5 +20,8 @@
     "forceConsistentCasingInFileNames": true,
     "strict": false,
     "skipLibCheck": true
-  }
+  },
+  "exclude": [
+    "commitlint.config.js"
+  ]
 }

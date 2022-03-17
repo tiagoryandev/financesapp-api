@@ -14,7 +14,9 @@ export default class App {
 	}
 
 	middlewares() {
-		this.app.use(cors());
+		this.app.use(cors({
+			origin: process.env.NODE_ENV == "production" ? process.env.CORS_ORIGIN || "*" : "*"
+		}));
 		this.app.use(express.json());
 		this.app.use(express.urlencoded({ extended: false }));
 	}

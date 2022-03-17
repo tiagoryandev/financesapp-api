@@ -1,7 +1,7 @@
 {
   "name": "api",
   "version": "1.0.0",
-  "description": "",
+  "description": "The Api for manager the authentication.",
   "main": "./build/server.js",
   "scripts": {
     "clean": "rimraf ./build",
@@ -51,7 +51,7 @@
     "jsonwebtoken": "^8.5.1",
     "uuid": "^8.3.2"
   },
-  "lint-stage": {
+  "lint-staged": {
     "*.ts": [
       "eslint --fix",
       "git add"
