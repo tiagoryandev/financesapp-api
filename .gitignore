@@ -1,5 +1,6 @@
 node_modules
-.env
-.env.test
+build
 package-lock.json
 yarn-lock.json
+.env
+.env.test
