@@ -23,6 +23,7 @@
   },
   "exclude": [
     "commitlint.config.js",
-    "jest.config.ts"
+    "jest.config.ts",
+    "./prisma/prisma-environment-jest.js"
   ]
 }
