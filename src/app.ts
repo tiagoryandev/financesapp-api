@@ -1,5 +1,6 @@
 import cors from "cors";
 import express from "express";
+import colors from "colors";
 
 import router from "./routes";
 
@@ -26,8 +27,8 @@ export default class App {
 	}
 
 	run() {
-		this.app.listen(process.env.PORT || 3000, () => {
-			console.log("[SERVER] Server is Running.");
+		this.app.listen(process.env.PORT, () => {
+			console.log(colors.yellow("[SERVER]") + " Server is Running on Port: " + colors.gray(process.env.PORT));
 		});
 	}
 }

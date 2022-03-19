@@ -1,4 +1,5 @@
 import IUsersRepository from "../repositories/IUsersRepository";
+import statusMessages from "../config/statusMessages.json";
 
 interface IUserRequest {
     first_name: string;
@@ -15,7 +16,8 @@ export default class CreateUserService {
 
 		if (userAlreadyExists) return {
 			status: 401,
-			code: "USER_ALREADY_EXISTS"
+			code: "USER_ALREADY_EXISTS",
+			message: statusMessages.USER_ALREADY_EXISTS
 		};
 
 		const user = await this.usersRepository.create({
@@ -28,6 +30,7 @@ export default class CreateUserService {
 		return {
 			status: 201,
 			code: "USER_CREATED",
+			message: statusMessages.USER_CREATED,
 			user
 		};
 	}

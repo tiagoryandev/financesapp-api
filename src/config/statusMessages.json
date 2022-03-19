@@ -1,0 +1,9 @@
+{
+    "INVALID_PARAMS": "",
+    "INVALID_TYPES": "",
+    "NOT_FOUND_USER": "",
+    "EMAIL_OR_PASSWORD_INCORRECT": "",
+    "USER_ALREADY_EXISTS": "",
+    "USER_CREATED": "",
+    "TOKEN_GENERATED": ""
+}

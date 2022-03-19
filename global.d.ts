@@ -3,7 +3,8 @@ export declare global {
         interface ProcessEnv extends EnvConfig {
             NODE_ENV: "development" | "production";
             DATABASE_URL: string;
-            PORT: number;
+            PORT: string;
+            JWT_SECRET_KEY: string;
         }
     }
 }

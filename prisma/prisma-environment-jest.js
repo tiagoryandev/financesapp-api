@@ -16,6 +16,7 @@ class CustomEnvironment extends NodeEnvironment {
 	constructor(config) {
 		super(config);
 		this.schema = `code_schema_${uuid()}`;
+		this.urlDefault = process.env.DATABASE_URL;
 		this.connectionString = `${process.env.DATABASE_URL}${this.schema}`;
 	}
 
@@ -34,6 +35,9 @@ class CustomEnvironment extends NodeEnvironment {
 		await client.connect();
 		await client.query(`DROP SCHEMA IF EXISTS "${this.schema}" CASCADE`);
 		await client.end();
+
+		process.env.DATABASE_URL = this.urlDefault;
+		this.global.process.env.DATABASE_URL = this.urlDefault;
 	}
 }
 
