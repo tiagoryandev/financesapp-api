@@ -41,7 +41,16 @@ export default class AuthUserService {
 			status: 200,
 			code: "TOKEN_GENERATED",
 			message: statusMessages.TOKEN_GENERATED,
-			token
+			token,
+			user: {
+				id: user.id,
+				first_name: user.first_name,
+				last_name: user.last_name,
+				email: user.email,
+				is_checked: user.is_checked,
+				created_at: user.created_at,
+				updated_at: user.updated_at
+			}
 		};
 	}
 }

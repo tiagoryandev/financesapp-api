@@ -57,5 +57,6 @@ describe("Create User Service", () => {
 		expect(result.status).toBe(200);
 		expect(result.code).toBe("TOKEN_GENERATED");
 		expect(result).toHaveProperty("token");
+		expect(result).toHaveProperty("user");
 	});
 });

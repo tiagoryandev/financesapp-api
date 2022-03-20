@@ -54,5 +54,6 @@ describe("Authentication User Controller", () => {
 		expect(response.status).toBe(200);
 		expect(response.body.code).toBe("TOKEN_GENERATED");
 		expect(response.body).toHaveProperty("token");
+		expect(response.body).toHaveProperty("user");
 	});
 });
