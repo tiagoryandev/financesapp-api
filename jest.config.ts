@@ -5,5 +5,6 @@ export default {
 	preset: "ts-jest",
 	testMatch: [
 		"**/**/*.spec.ts"
-	]
+	],
+	setupFiles: ["dotenv/config"]
 };

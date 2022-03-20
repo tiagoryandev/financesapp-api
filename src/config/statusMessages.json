@@ -5,5 +5,8 @@
     "EMAIL_OR_PASSWORD_INCORRECT": "",
     "USER_ALREADY_EXISTS": "",
     "USER_CREATED": "",
-    "TOKEN_GENERATED": ""
+    "GET_USER": "",
+    "NOT_AUTHENTICATED": "",
+    "TOKEN_GENERATED": "",
+    "TOKEN_EXPIRED": ""
 }
