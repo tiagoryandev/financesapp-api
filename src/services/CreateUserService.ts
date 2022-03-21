@@ -31,7 +31,15 @@ export default class CreateUserService {
 			status: 201,
 			code: "USER_CREATED",
 			message: statusMessages.USER_CREATED,
-			user
+			user: {
+				id: user.id,
+				first_name: user.first_name,
+				last_name: user.last_name,
+				email: user.email,
+				is_checked: user.is_checked,
+				created_at: user.created_at,
+				updated_at: user.updated_at
+			}
 		};
 	}
 }

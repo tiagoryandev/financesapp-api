@@ -17,6 +17,13 @@ class PrismaUsersRepository implements IUsersRepository {
 			}
 		});
 
+		await prismaClient.logUser.create({
+			data: {
+				user_id: user.id,
+				type: "CREATED"
+			}
+		});
+
 		return user;
 	}
 
