@@ -13,7 +13,7 @@ export default class AuthUserService {
 	constructor(private usersRepository: IUsersRepository) { }
 
 	async execute({ email, password }: IUserRequest) {
-		const userAlreadyExists = await this.usersRepository.exists(email);
+		const userAlreadyExists = await this.usersRepository.exists("email", email);
 
 		if (!userAlreadyExists) return {
 			status: 401,
@@ -21,7 +21,7 @@ export default class AuthUserService {
 			message: statusMessages.NOT_FOUND_USER
 		};
 
-		const user = await this.usersRepository.get(email);
+		const user = await this.usersRepository.get("email", email);
 		const passwordMatch = await compare(password, user.password);
 
 		if (!passwordMatch) return {

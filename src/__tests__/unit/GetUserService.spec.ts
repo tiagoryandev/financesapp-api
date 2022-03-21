@@ -16,7 +16,7 @@ describe("Get User Service", () => {
 
 	it("Should not be able to get user not exists", async () => {
 		const result = await getUserService.execute({
-			email: "user_email_not_exists@get_user_service.test"
+			id: "09121212-1231-21-31129129"
 		});
         
 		expect(result.status).toBe(401);
@@ -32,7 +32,7 @@ describe("Get User Service", () => {
 		});
 
 		const result = await getUserService.execute({
-			email: userExists.user.email
+			id: userExists.user.id
 		});
 
 		expect(result.status).toBe(200);

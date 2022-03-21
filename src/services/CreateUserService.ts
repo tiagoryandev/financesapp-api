@@ -12,7 +12,7 @@ export default class CreateUserService {
 	constructor(private usersRepository: IUsersRepository) { }
 
 	async execute({ first_name, last_name, email, password }: IUserRequest) {
-		const userAlreadyExists = await this.usersRepository.exists(email);
+		const userAlreadyExists = await this.usersRepository.exists("email", email);
 
 		if (userAlreadyExists) return {
 			status: 401,

@@ -3,14 +3,14 @@ import IUsersRepository from "../repositories/IUsersRepository";
 import statusMessages from "../config/statusMessages.json";
 
 interface IUserRequest {
-    email: string;
+    id: string;
 }
 
 export default class GetUserService {
 	constructor(private usersRepository: IUsersRepository) { }
 
-	async execute({ email }: IUserRequest) {
-		const userAlreadyExists = await this.usersRepository.exists(email);
+	async execute({ id }: IUserRequest) {
+		const userAlreadyExists = await this.usersRepository.exists("id", id);
 
 		if (!userAlreadyExists) return {
 			status: 401,
@@ -18,7 +18,7 @@ export default class GetUserService {
 			message: statusMessages.NOT_FOUND_USER
 		};
 
-		const user = await this.usersRepository.get(email);
+		const user = await this.usersRepository.get("id", id);
 
 		return {
 			status: 200,

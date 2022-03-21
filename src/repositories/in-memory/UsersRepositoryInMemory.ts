@@ -2,7 +2,7 @@ import { v4 as uuid } from "uuid";
 import { hash } from "bcryptjs";
 
 import User from "../../entities/User";
-import IUsersRepository from "../IUsersRepository";
+import IUsersRepository, { Options } from "../IUsersRepository";
 
 class UsersRepositoryInMemory implements IUsersRepository {
 	private users: User[] = [];
@@ -25,14 +25,14 @@ class UsersRepositoryInMemory implements IUsersRepository {
 		return user;
 	}
 
-	async get(email: string) {
-		const user = this.users.find(data => data.email == email);
+	async get(option: Options, value: string) {
+		const user = this.users.find(data => data[option] == value);
 
 		return user;
 	}	
 
-	async exists(email: string): Promise<boolean> {
-		const user = this.users.some((user) => user.email === email);
+	async exists(option: Options, value: string): Promise<boolean> {
+		const user = this.users.some((user) => user[option] === value);
 
 		return user;
 	}

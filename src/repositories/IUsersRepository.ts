@@ -1,9 +1,11 @@
 import User from "../entities/User";
 
+export type Options = "id" | "email";
+
 interface IUsersRepository {
     create(user: User): Promise<User>;
-    get(email: string): Promise<User>;
-    exists(email: string): Promise<boolean>;
+    get(option: Options, value: string): Promise<User>;
+    exists(option: Options, value: string): Promise<boolean>;
 }
 
 export default IUsersRepository;

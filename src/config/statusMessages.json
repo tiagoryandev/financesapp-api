@@ -1,10 +1,12 @@
 {
     "INVALID_PARAMS": "",
     "INVALID_TYPES": "",
+    "INVALID_CATEGORY_TYPE": "",
     "NOT_FOUND_USER": "",
     "EMAIL_OR_PASSWORD_INCORRECT": "",
     "USER_ALREADY_EXISTS": "",
     "USER_CREATED": "",
+    "CATEGORY_CREATED": "",
     "GET_USER": "",
     "NOT_AUTHENTICATED": "",
     "TOKEN_GENERATED": "",

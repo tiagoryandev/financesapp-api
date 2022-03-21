@@ -2,7 +2,7 @@ import { hash } from "bcryptjs";
 
 import prismaClient from "../../database";
 import User from "../../entities/User";
-import IUsersRepository from "../IUsersRepository";
+import IUsersRepository, { Options } from "../IUsersRepository";
 
 class PrismaUsersRepository implements IUsersRepository {
 	async create({ first_name, last_name, email, password }: User): Promise<User> {
@@ -27,20 +27,20 @@ class PrismaUsersRepository implements IUsersRepository {
 		return user;
 	}
 
-	async get(email: string): Promise<User> {
+	async get(option: Options, value: string): Promise<User> {
 		const user = await prismaClient.user.findUnique({
 			where: {
-				email
+				[option]: value
 			}
 		});
 
 		return user;
 	}
 
-	async exists(email: string): Promise<boolean> {
-		const user = await prismaClient.user.findUnique({
+	async exists(option: Options, value: string): Promise<boolean> {
+		const user = await prismaClient.user.findFirst({
 			where: {
-				email
+				[option]: value
 			}
 		});
 
