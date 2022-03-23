@@ -20,6 +20,12 @@ class CategoriesRepository implements ICategoriesRepository {
 
 		return category;
 	}
+
+	async getAll(user_id: string): Promise<Category[]> {
+		const categories = this.categories.filter(c => c.user_id === user_id);
+
+		return categories;
+	}
 }
 
 export default CategoriesRepository;

@@ -8,6 +8,7 @@
     "USER_CREATED": "",
     "CATEGORY_CREATED": "",
     "GET_USER": "",
+    "GET_CATEGORY_LIST": "",
     "NOT_AUTHENTICATED": "",
     "TOKEN_GENERATED": "",
     "TOKEN_EXPIRED": ""

@@ -22,6 +22,16 @@ class PrismaCategoriesRepository implements ICategoriesRepository {
 
 		return category;
 	}
+
+	async getAll(user_id: string): Promise<Category[]> {
+		const categories = await prismaClient.category.findMany({
+			where: {
+				user_id
+			}
+		});
+
+		return categories;
+	}
 }
 
 export default PrismaCategoriesRepository;
