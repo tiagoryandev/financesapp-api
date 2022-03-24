@@ -39,7 +39,7 @@ describe("Get User Controller", () => {
 		const response = await request(app).get("/@me").set("Authorization", "Bearer " + body.token);
 
 		expect(response.status).toBe(200);
-		expect(response.body.code).toBe("GET_USER");
+		expect(response.body.code).toBe("USER_SEARCHED");
 		expect(response.body).toHaveProperty("user");
 	});
 });

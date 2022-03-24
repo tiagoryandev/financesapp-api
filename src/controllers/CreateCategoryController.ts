@@ -19,21 +19,21 @@ export default class CreateCategoryController {
 			return response.status(400).json({
 				status: 400,
 				code: "INVALID_PARAMS",
-				message: statusMessages.INVALID_PARAMS
+				message: statusMessages.invalid.INVALID_PARAMS
 			});
 
 		if (typeof name != "string" || typeof type != "string")
 			return response.status(400).json({
 				status: 400,
 				code: "INVALID_TYPES",
-				message: statusMessages.INVALID_TYPES
+				message: statusMessages.invalid.INVALID_TYPES
 			});
 
 		if (!["expense", "income"].includes(type))
 			return response.status(400).json({
 				status: 400,
 				code: "INVALID_CATEGORY_TYPE",
-				message: statusMessages.INVALID_CATEGORY_TYPE
+				message: statusMessages.invalid.INVALID_CATEGORY_TYPE
 			});
 
 		const result = await this.createCategory.execute({

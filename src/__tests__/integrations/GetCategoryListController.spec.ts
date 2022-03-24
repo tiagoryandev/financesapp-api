@@ -25,7 +25,7 @@ describe("Get Category List Controller", () => {
 		const response = await request(app).get("/categories").set("Authorization", "Bearer " + body.token);
 
 		expect(response.status).toBe(200);
-		expect(response.body.code).toBe("GET_CATEGORY_LIST");
+		expect(response.body.code).toBe("CATEGORY_LIST_SELECTED");
 		expect(response.body).toHaveProperty("categories");
 	});
 });

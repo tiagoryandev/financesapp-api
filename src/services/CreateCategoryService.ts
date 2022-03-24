@@ -17,7 +17,7 @@ export default class CreateCategoryService {
 		if (!userAlreadyExists) return {
 			status: 401,
 			code: "NOT_FOUND_USER",
-			message: statusMessages.NOT_FOUND_USER
+			message: statusMessages.conflict.NOT_FOUND_USER
 		};
 
 		const category = await this.categoriesRepository.create({
@@ -29,7 +29,7 @@ export default class CreateCategoryService {
 		return {
 			status: 201,
 			code: "CATEGORY_CREATED",
-			message: statusMessages.CATEGORY_CREATED,
+			message: statusMessages.created.CATEGORY_CREATED,
 			category
 		};
 	}

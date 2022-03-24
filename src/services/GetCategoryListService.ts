@@ -14,8 +14,8 @@ export default class GetCategoryListService {
 
 		return {
 			status: 200,
-			code: "GET_CATEGORY_LIST",
-			message: statusMessages.GET_CATEGORY_LIST,
+			code: "CATEGORY_LIST_SELECTED",
+			message: statusMessages.getting.CATEGORY_LIST_SELECTED,
 			categories
 		};
 	}

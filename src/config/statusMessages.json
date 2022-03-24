@@ -1,15 +1,34 @@
 {
-    "INVALID_PARAMS": "",
-    "INVALID_TYPES": "",
-    "INVALID_CATEGORY_TYPE": "",
-    "NOT_FOUND_USER": "",
-    "EMAIL_OR_PASSWORD_INCORRECT": "",
-    "USER_ALREADY_EXISTS": "",
-    "USER_CREATED": "",
-    "CATEGORY_CREATED": "",
-    "GET_USER": "",
-    "GET_CATEGORY_LIST": "",
-    "NOT_AUTHENTICATED": "",
-    "TOKEN_GENERATED": "",
-    "TOKEN_EXPIRED": ""
+    "invalid": {
+        "INVALID_PARAMS": "",
+        "INVALID_TYPES": "",
+        "INVALID_CATEGORY_TYPE": "",
+        "INVALID_EMAIL": "",
+        "INVALID_TOKEN": ""
+    },
+    "conflict": {
+        "USER_ALREADY_EXISTS": "",
+        "CATEGORY_ALREADY_EXISTS": "",
+        "NOT_FOUND_USER": "",
+        "NOT_FOUND_CATEGORY": "",
+        "NOT_FOUND_ITEM": ""
+    },
+    "authentication": {
+        "NOT_AUTHENTICATED": "",
+        "EMAIL_OR_PASSWORD_INCORRECT": "",
+        "TOKEN_EXPIRED": "",
+        "TOKEN_GENERATED": ""
+    },
+    "created": {
+        "USER_CREATED": "",
+        "CATEGORY_CREATED": "",
+        "ITEM_CREATED": ""
+    },
+    "getting": {
+        "USER_SEARCHED": "",
+        "CATEGORY_SEARCHED": "",
+        "ITEM_SEARCHED": "",
+        "CATEGORY_LIST_SELECTED": "",
+        "ITEM_LIST_SELECT": ""
+    }
 }

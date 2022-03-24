@@ -15,15 +15,15 @@ export default class GetUserService {
 		if (!userAlreadyExists) return {
 			status: 401,
 			code: "NOT_FOUND_USER",
-			message: statusMessages.NOT_FOUND_USER
+			message: statusMessages.conflict.NOT_FOUND_USER
 		};
 
 		const user = await this.usersRepository.get("id", id);
 
 		return {
 			status: 200,
-			code: "GET_USER",
-			messages: statusMessages.GET_USER,
+			code: "USER_SEARCHED",
+			messages: statusMessages.getting.USER_SEARCHED,
 			user: {
 				id: user.id,
 				first_name: user.first_name,

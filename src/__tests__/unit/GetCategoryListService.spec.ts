@@ -17,7 +17,7 @@ describe("Get Category List Service", () => {
 		});
 
 		expect(categories.status).toBe(200);
-		expect(categories.code).toBe("GET_CATEGORY_LIST");
+		expect(categories.code).toBe("CATEGORY_LIST_SELECTED");
 		expect(categories).toHaveProperty("categories");
 	});
 });

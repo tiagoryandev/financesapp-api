@@ -18,14 +18,14 @@ export default class AuthUserController {
 			return response.status(400).json({
 				status: 400,
 				code: "INVALID_PARAMS",
-				message: statusMessages.INVALID_PARAMS
+				message: statusMessages.invalid.INVALID_PARAMS
 			});
             
 		if (typeof email != "string" || typeof password != "string")
 			return response.status(400).json({
 				status: 400,
 				code: "INVALID_TYPES",
-				message: statusMessages.INVALID_TYPES
+				message: statusMessages.invalid.INVALID_TYPES
 			});
 
 		const result = await this.authUserService.execute({
