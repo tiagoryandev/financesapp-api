@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 
 import AuthUserService from "../services/AuthUserService";
+import { validateEmail } from "../helpers/validation";
 import statusMessages from "../config/statusMessages.json";
 
 type RequestData = {
@@ -28,10 +29,19 @@ export default class AuthUserController {
 				message: statusMessages.invalid.INVALID_TYPES
 			});
 
-		const result = await this.authUserService.execute({
-			email,
+		const data = {
+			email: email.trim().split(" ")[0],
 			password
-		});
+		};
+
+		if (!validateEmail.test(data.email))
+			return response.status(400).json({
+				status: 400,
+				code: "INVALID_EMAIL",
+				message: statusMessages.invalid.INVALID_EMAIL
+			});
+
+		const result = await this.authUserService.execute(data);
         
 		return response.status(result.status).json(result);
 	}

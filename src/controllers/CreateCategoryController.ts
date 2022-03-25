@@ -36,11 +36,20 @@ export default class CreateCategoryController {
 				message: statusMessages.invalid.INVALID_CATEGORY_TYPE
 			});
 
-		const result = await this.createCategory.execute({
+		const data = {
 			user_id,
-			name,
+			name: name.trim(),
 			type
-		});
+		};
+
+		if (data.name.length < 2 || data.name.length > 32)
+			return response.status(400).json({
+				status: 400,
+				code: "MAX_OR_MIN_NAME_LENGTH",
+				message: statusMessages.invalid.MAX_OR_MIN_NAME_LENGTH
+			});
+
+		const result = await this.createCategory.execute(data);
 
 		return response.status(result.status).json(result);
 	}

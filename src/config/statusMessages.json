@@ -4,7 +4,8 @@
         "INVALID_TYPES": "",
         "INVALID_CATEGORY_TYPE": "",
         "INVALID_EMAIL": "",
-        "INVALID_TOKEN": ""
+        "INVALID_TOKEN": "",
+        "MAX_OR_MIN_NAME_LENGTH": ""
     },
     "conflict": {
         "USER_ALREADY_EXISTS": "",

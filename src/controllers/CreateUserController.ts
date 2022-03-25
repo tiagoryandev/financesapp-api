@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 
 import CreateUserService from "../services/CreateUserService";
+import { validateEmail } from "../helpers/validation";
 import statusMessages from "../config/statusMessages.json";
 
 type RequestData = {
@@ -30,12 +31,28 @@ export default class CreateUserController {
 				message: statusMessages.invalid.INVALID_TYPES
 			});
 
-		const result = await this.createUser.execute({
-			first_name,
-			last_name,
-			email,
-			password
-		});
+		const data = {
+			first_name: first_name.trim(),
+			last_name: last_name.trim(),
+			email: email.trim().split(" ")[0],
+			password: password
+		};
+
+		if (data.first_name.length < 2 || data.first_name.length > 32 || data.last_name.length < 2 || data.last_name.length > 32)
+			return response.status(400).json({
+				status: 400,
+				code: "MAX_OR_MIN_NAME_LENGTH",
+				message: statusMessages.invalid.MAX_OR_MIN_NAME_LENGTH
+			});
+
+		if (!validateEmail.test(data.email))
+			return response.status(400).json({
+				status: 400,
+				code: "INVALID_EMAIL",
+				message: statusMessages.invalid.INVALID_EMAIL
+			});
+
+		const result = await this.createUser.execute(data);
         
 		return response.status(result.status).json(result);
 	}
