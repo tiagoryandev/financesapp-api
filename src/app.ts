@@ -15,6 +15,7 @@ export default class App {
 	}
 
 	middlewares() {
+		this.app.disable("x-powered-by");
 		this.app.use(cors({
 			origin: process.env.NODE_ENV == "production" ? process.env.CORS_ORIGIN || "*" : "*"
 		}));
