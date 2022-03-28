@@ -16,6 +16,7 @@ model User {
     password   String
     created_at DateTime @default(now())
     updated_at DateTime @default(now())
+    role       Role     @default(USER)
 
     Category       Category[]
     Item           Item[]
@@ -57,21 +58,25 @@ model Category {
 }
 
 model LogUser {
-    id         Int      @id @default(autoincrement())
-    user_id    String
-    type       String
-    created_at DateTime @default(now())
+    id           Int      @id @default(autoincrement())
+    user_id      String
+    type         String
+    before_value String?
+    after_value  String?
+    created_at   DateTime @default(now())
 
     user User? @relation(fields: [user_id], references: [id])
     @@map("log_users")
 }
 
 model LogCategory {
-    id          Int      @id @default(autoincrement())
-    user_id     String
-    category_id String
-    type        String
-    created_at  DateTime @default(now())
+    id           Int      @id @default(autoincrement())
+    user_id      String
+    category_id  String
+    type         String
+    before_value String?
+    after_value  String?
+    created_at   DateTime @default(now())
 
     user     User?     @relation(fields: [user_id], references: [id])
     category Category? @relation(fields: [category_id], references: [id])
@@ -79,13 +84,20 @@ model LogCategory {
 }
 
 model LogItem {
-    id         Int      @id @default(autoincrement())
-    user_id    String
-    item_id    String
-    type       String
-    created_at DateTime @default(now())
+    id           Int      @id @default(autoincrement())
+    user_id      String
+    item_id      String
+    type         String
+    before_value String?
+    after_value  String?
+    created_at   DateTime @default(now())
 
     user User? @relation(fields: [user_id], references: [id])
     item Item? @relation(fields: [item_id], references: [id])
     @@map("log_items")
+}
+
+enum Role {
+    USER
+    ADMIN
 }

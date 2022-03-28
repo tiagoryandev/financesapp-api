@@ -7,6 +7,7 @@ import GetCategoryListModule from "./modules/GetCategoryListModule";
 import AuthUserModule from "./modules/AuthUserModule";
 import CreateUserModule from "./modules/CreateUserModule";
 import CreateCategoryModule from "./modules/CreateCategoryModule";
+import CreateItemModule from "./modules/CreateItemModule";
 
 const router = express.Router();
 
@@ -16,5 +17,6 @@ router.get("/categories", ensureAuthentication, (request, response) => GetCatego
 router.post("/users", (request, response) => CreateUserModule().execute(request, response));
 router.post("/auth", (request, response) => AuthUserModule().execute(request, response));
 router.post("/categories", ensureAuthentication, (request, response) => CreateCategoryModule().execute(request, response));
+router.post("/items", ensureAuthentication, (request, response) => CreateItemModule().execute(request, response));
 
 export default router;

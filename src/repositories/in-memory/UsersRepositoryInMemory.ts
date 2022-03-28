@@ -25,8 +25,8 @@ class UsersRepositoryInMemory implements IUsersRepository {
 		return user;
 	}
 
-	async get(option: Options, value: string) {
-		const user = this.users.find(data => data[option] == value);
+	async get(option: Options, value: string): Promise<User> {
+		const user = this.users.find(data => data[option] === value);
 
 		return user;
 	}	

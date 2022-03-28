@@ -5,7 +5,10 @@
         "INVALID_CATEGORY_TYPE": "",
         "INVALID_EMAIL": "",
         "INVALID_TOKEN": "",
-        "MAX_OR_MIN_NAME_LENGTH": ""
+        "INVALID_DATE": "",
+        "MAX_OR_MIN_NAME_LENGTH": "",
+        "MAX_OR_MIN_TITLE_LENGTH": "",
+        "MAX_OR_MIN_NOTE_LENGTH": ""
     },
     "conflict": {
         "USER_ALREADY_EXISTS": "",

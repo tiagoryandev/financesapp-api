@@ -13,14 +13,12 @@ class PrismaUsersRepository implements IUsersRepository {
 				first_name,
 				last_name,
 				email,
-				password: passwordMath
-			}
-		});
-
-		await prismaClient.logUser.create({
-			data: {
-				user_id: user.id,
-				type: "CREATED"
+				password: passwordMath,
+				log_users: {
+					create: {
+						type: "CREATED"
+					}
+				}
 			}
 		});
 

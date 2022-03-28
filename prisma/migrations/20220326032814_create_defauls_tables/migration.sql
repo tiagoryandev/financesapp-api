@@ -1,3 +1,6 @@
+-- CreateEnum
+CREATE TYPE "Role" AS ENUM ('USER', 'ADMIN');
+
 -- CreateTable
 CREATE TABLE "users" (
     "id" TEXT NOT NULL,
@@ -8,6 +11,7 @@ CREATE TABLE "users" (
     "password" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "role" "Role" NOT NULL DEFAULT E'USER',
 
     CONSTRAINT "users_pkey" PRIMARY KEY ("id")
 );
@@ -43,6 +47,8 @@ CREATE TABLE "log_users" (
     "id" SERIAL NOT NULL,
     "user_id" TEXT NOT NULL,
     "type" TEXT NOT NULL,
+    "before_value" TEXT,
+    "after_value" TEXT,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "log_users_pkey" PRIMARY KEY ("id")
@@ -54,6 +60,8 @@ CREATE TABLE "log_categories" (
     "user_id" TEXT NOT NULL,
     "category_id" TEXT NOT NULL,
     "type" TEXT NOT NULL,
+    "before_value" TEXT,
+    "after_value" TEXT,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "log_categories_pkey" PRIMARY KEY ("id")
@@ -65,6 +73,8 @@ CREATE TABLE "log_items" (
     "user_id" TEXT NOT NULL,
     "item_id" TEXT NOT NULL,
     "type" TEXT NOT NULL,
+    "before_value" TEXT,
+    "after_value" TEXT,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "log_items_pkey" PRIMARY KEY ("id")

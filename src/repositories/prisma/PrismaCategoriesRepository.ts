@@ -8,19 +8,28 @@ class PrismaCategoriesRepository implements ICategoriesRepository {
 			data: {
 				user_id,
 				name,
-				type
-			}
-		});
-
-		await prismaClient.logCategory.create({
-			data: {
-				user_id,
-				category_id: category.id,
-				type: "CREATED"
+				type,
+				log_categories: {
+					create: {
+						type: "CREATED",
+						user_id
+					}
+				}
 			}
 		});
 
 		return category;
+	}
+
+	async exists(id: string, user_id: string): Promise<boolean> {
+		const category = await prismaClient.category.findFirst({
+			where: {
+				id,
+				user_id
+			}
+		});
+
+		return !!category;
 	}
 
 	async getAll(user_id: string): Promise<Category[]> {
