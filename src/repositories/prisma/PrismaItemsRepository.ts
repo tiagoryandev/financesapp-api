@@ -23,6 +23,16 @@ class PrismaItemsRepository implements IItemsRepository {
 
 		return item;
 	}
+
+	async getAll(user_id: string): Promise<Item[]> {
+		const items = await prismaClient.item.findMany({
+			where: {
+				user_id
+			}
+		});
+
+		return items;
+	}
 }
 
 export default PrismaItemsRepository;

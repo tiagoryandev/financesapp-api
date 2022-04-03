@@ -22,6 +22,12 @@ class ItemsRepositoryInMemory implements IItemsRepository {
 
 		return item;
 	}
+
+	async getAll(user_id: string): Promise<Item[]> {
+		const items = this.items.filter(i => i.user_id == user_id);
+
+		return items;
+	}
 }
 
 export default ItemsRepositoryInMemory;
