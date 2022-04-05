@@ -35,6 +35,7 @@ export default class CreateUserService {
 				id: user.id,
 				first_name: user.first_name,
 				last_name: user.last_name,
+				role: user.role,
 				email: user.email,
 				is_checked: user.is_checked,
 				created_at: user.created_at,
