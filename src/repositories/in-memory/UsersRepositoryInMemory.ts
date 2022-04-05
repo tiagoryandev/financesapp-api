@@ -14,6 +14,7 @@ class UsersRepositoryInMemory implements IUsersRepository {
 			id: uuid(),
 			first_name,
 			last_name,
+			role: "USER",
 			email,
 			is_checked: false,
 			password: passwordMath,
