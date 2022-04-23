@@ -8,9 +8,10 @@ import App from "../../app";
 
 describe("Authentication User Controller", () => {
 	const app = new App().app;
+	const api = request(app);
 
 	it("Should not be able to authenticate user not exists", async () => {
-		const response = await request(app).post("/auth").send({
+		const response = await api.post("/auth").send({
 			email: "user_not_exists@auth_user_controller.test",
 			password: "password_test"
 		});
@@ -21,14 +22,14 @@ describe("Authentication User Controller", () => {
 	});
 
 	it("Should not be able to authenticate user with credentials incorrects", async () => {
-		await request(app).post("/users").send({
+		await api.post("/users").send({
 			first_name: "FirstName",
 			last_name: "LastName",
 			email: "user_default@auth_user_controller.test",
 			password: "password_test"
 		});
         
-		const response = await request(app).post("/auth").send({
+		const response = await api.post("/auth").send({
 			email: "user_default@auth_user_controller.test",
 			password: "password_test_incorrect"
 		});
@@ -39,14 +40,14 @@ describe("Authentication User Controller", () => {
 	});
 
 	it("Should be able to authenticate user with credentials", async () => {
-		await request(app).post("/users").send({
+		await api.post("/users").send({
 			first_name: "FirstName",
 			last_name: "LastName",
 			email: "user@auth_user_controller.test",
 			password: "password_test"
 		});
         
-		const response = await request(app).post("/auth").send({
+		const response = await api.post("/auth").send({
 			email: "user@auth_user_controller.test",
 			password: "password_test"
 		});

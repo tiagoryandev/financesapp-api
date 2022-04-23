@@ -8,21 +8,22 @@ import App from "../../app";
 
 describe("Create Category Controller", () => {
 	const app = new App().app;
+	const api = request(app);
     
 	it("Should not be able to create a new category with type invalid", async () => {
-		await request(app).post("/users").send({
+		await api.post("/users").send({
 			first_name: "FirstName",
 			last_name: "LastName",
 			email: "user@create_category_controller.test",
 			password: "12345"
 		});
 
-		const { body } = await request(app).post("/auth").send({
+		const { body } = await api.post("/auth").send({
 			email: "user@create_category_controller.test",
 			password: "12345"
 		});
 
-		const response = await request(app).post("/categories").set("Authorization", "Bearer " + body.token).send({
+		const response = await api.post("/categories").set("Authorization", "Bearer " + body.token).send({
 			name: "CategoryName",
 			type: "invalid_type"
 		});
@@ -32,19 +33,19 @@ describe("Create Category Controller", () => {
 	});
 
 	it("Should able to create a new category with credentials corrects", async () => {
-		await request(app).post("/users").send({
+		await api.post("/users").send({
 			first_name: "FirstName",
 			last_name: "LastName",
 			email: "user_create@create_category_controller.test",
 			password: "12345"
 		});
 
-		const { body } = await request(app).post("/auth").send({
+		const { body } = await api.post("/auth").send({
 			email: "user_create@create_category_controller.test",
 			password: "12345"
 		});
 
-		const response = await request(app).post("/categories").set("Authorization", "Bearer " + body.token).send({
+		const response = await api.post("/categories").set("Authorization", "Bearer " + body.token).send({
 			name: "CategoryName",
 			type: "income"
 		});
