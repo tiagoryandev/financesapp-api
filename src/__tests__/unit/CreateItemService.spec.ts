@@ -25,7 +25,7 @@ describe("Create Item Service", () => {
 			title: "Teste",
 			note: "Teste",
 			value: 12345,
-			category_id: "1234",
+			category_id: Math.floor(Math.random() * 1000),
 			created_at: new Date()
 		});
 
@@ -46,7 +46,7 @@ describe("Create Item Service", () => {
 			title: "Teste",
 			note: "Teste",
 			value: 12345,
-			category_id: "00000-0000-0000-000000-invalid",
+			category_id: Math.floor(Math.random() * 1000),
 			created_at: new Date()
 		});
 
