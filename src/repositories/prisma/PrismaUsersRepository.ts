@@ -36,7 +36,7 @@ class PrismaUsersRepository implements IUsersRepository {
 	}
 
 	async exists(option: Options, value: string): Promise<boolean> {
-		const user = await prismaClient.user.findFirst({
+		const user = await prismaClient.user.findUnique({
 			where: {
 				[option]: value
 			}

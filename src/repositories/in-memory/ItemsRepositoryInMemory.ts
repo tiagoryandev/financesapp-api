@@ -1,5 +1,3 @@
-import { v4 as uuid } from "uuid";
-
 import Item from "../../entities/Item";
 import IItemsRepository from "../IItemsRepository";
 
@@ -8,7 +6,7 @@ class ItemsRepositoryInMemory implements IItemsRepository {
 
 	async create({ user_id, title, note, value, category_id }: Item): Promise<Item> {
 		const item: Item = {
-			id: uuid(),
+			id: this.items.length + 1,
 			user_id,
 			title,
 			note,

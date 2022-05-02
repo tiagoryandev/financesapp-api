@@ -8,7 +8,7 @@ interface IItemRequest {
     title: string;
     note: string;
     value: number;
-    category_id: string;
+    category_id: number;
 	created_at: Date;
 }
 

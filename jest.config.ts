@@ -3,10 +3,10 @@ export default {
 	clearMocks: true,
 	coverageProvider: "v8",
 	transform: {
-		"^.+\\.(t|j)sx?$": ["@swc/jest"],
+		"^.+\\.(t)sx?$": ["@swc/jest"],
 	},
 	testMatch: [
-		"**/**/*.spec.ts"
+		"**/*.spec.ts"
 	],
 	setupFiles: ["dotenv/config"]
 };

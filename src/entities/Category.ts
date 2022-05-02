@@ -1,5 +1,5 @@
 class Category {
-	id?: string;
+	id?: number;
 	user_id: string;
 	name: string;
 	type: string;

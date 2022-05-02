@@ -27,23 +27,23 @@ model User {
 }
 
 model Item {
-    id          String   @id @default(uuid())
+    id          Int      @id @default(autoincrement())
     user_id     String
     title       String
     note        String
     value       Float
-    category_id String
+    category_id Int
     created_at  DateTime @default(now())
     updated_at  DateTime @default(now())
 
     user      User?     @relation(fields: [user_id], references: [id])
-    category  Category? @relation(fields: [category_id], references: [id], onDelete: Cascade)
+    category  Category? @relation(fields: [id], references: [id], onDelete: Cascade)
     log_items LogItem[]
     @@map("items")
 }
 
 model Category {
-    id         String   @id @default(uuid())
+    id         Int      @id @default(autoincrement())
     user_id    String
     name       String
     type       String
@@ -72,7 +72,7 @@ model LogUser {
 model LogCategory {
     id           Int      @id @default(autoincrement())
     user_id      String
-    category_id  String
+    category_id  Int
     type         String
     before_value String?
     after_value  String?
@@ -86,7 +86,7 @@ model LogCategory {
 model LogItem {
     id           Int      @id @default(autoincrement())
     user_id      String
-    item_id      String
+    item_id      Int
     type         String
     before_value String?
     after_value  String?

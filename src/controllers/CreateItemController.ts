@@ -8,7 +8,7 @@ type RequestData = {
     title: string;
     note: string;
     value: number;
-    category_id: string;
+    category_id: number;
     created_at: string;
 }
 
@@ -26,7 +26,7 @@ export default class CreateItemController {
 				message: statusMessages.invalid.INVALID_PARAMS
 			});
 
-		if (typeof title != "string" || typeof note != "string" || typeof value != "number" || typeof category_id != "string" || typeof created_at != "string")
+		if (typeof title != "string" || typeof note != "string" || typeof value != "number" || typeof category_id != "number" || typeof created_at != "string")
 			return response.status(400).json({
 				status: 400,
 				code: "INVALID_TYPES",
@@ -45,7 +45,7 @@ export default class CreateItemController {
 			title: title.trim(),
 			note: note.trim(),
 			value: Math.abs(value),
-			category_id: category_id.trim().split(" ")[0],
+			category_id: category_id,
 			created_at: new Date(created_at.trim().split(" ")[0])
 		};
 

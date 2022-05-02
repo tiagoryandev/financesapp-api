@@ -13,7 +13,7 @@
     "dev": "ts-node-dev --respawn --transpile-only --ignore-watch ./node_modules ./src/server.ts",
     "build": "npm run clean && npm run prisma:deploy && tsc --project ./tsconfig.json",
     "start": "node .",
-    "test": "jest -- --maxWorkers=100%"
+    "test": "jest"
   },
   "keywords": [
     "api",

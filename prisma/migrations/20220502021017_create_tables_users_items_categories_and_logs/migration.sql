@@ -18,12 +18,12 @@ CREATE TABLE "users" (
 
 -- CreateTable
 CREATE TABLE "items" (
-    "id" TEXT NOT NULL,
+    "id" SERIAL NOT NULL,
     "user_id" TEXT NOT NULL,
     "title" TEXT NOT NULL,
     "note" TEXT NOT NULL,
     "value" DOUBLE PRECISION NOT NULL,
-    "category_id" TEXT NOT NULL,
+    "category_id" INTEGER NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
@@ -32,7 +32,7 @@ CREATE TABLE "items" (
 
 -- CreateTable
 CREATE TABLE "categories" (
-    "id" TEXT NOT NULL,
+    "id" SERIAL NOT NULL,
     "user_id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "type" TEXT NOT NULL,
@@ -58,7 +58,7 @@ CREATE TABLE "log_users" (
 CREATE TABLE "log_categories" (
     "id" SERIAL NOT NULL,
     "user_id" TEXT NOT NULL,
-    "category_id" TEXT NOT NULL,
+    "category_id" INTEGER NOT NULL,
     "type" TEXT NOT NULL,
     "before_value" TEXT,
     "after_value" TEXT,
@@ -71,7 +71,7 @@ CREATE TABLE "log_categories" (
 CREATE TABLE "log_items" (
     "id" SERIAL NOT NULL,
     "user_id" TEXT NOT NULL,
-    "item_id" TEXT NOT NULL,
+    "item_id" INTEGER NOT NULL,
     "type" TEXT NOT NULL,
     "before_value" TEXT,
     "after_value" TEXT,
@@ -87,7 +87,7 @@ CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
 ALTER TABLE "items" ADD CONSTRAINT "items_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "items" ADD CONSTRAINT "items_category_id_fkey" FOREIGN KEY ("category_id") REFERENCES "categories"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "items" ADD CONSTRAINT "items_id_fkey" FOREIGN KEY ("id") REFERENCES "categories"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "categories" ADD CONSTRAINT "categories_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;
