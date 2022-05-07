@@ -2,7 +2,7 @@ import IItemsRepository from "../../repositories/IItemsRepository";
 import ItemsRepositoryInMemory from "../../repositories/in-memory/ItemsRepositoryInMemory";
 import GetItemListService from "../../services/GetItemListService";
 
-describe("Get Item List Service", () => {
+describe("service: Get Item List", () => {
 	let itemsRepository: IItemsRepository;
 	let getItemListService: GetItemListService;
 
@@ -11,7 +11,7 @@ describe("Get Item List Service", () => {
 		getItemListService = new GetItemListService(itemsRepository);
 	});
 
-	it("Should be able to get the item list with user id", async () => {
+	test("Will be possible to select a user's list of items by id", async () => {
 		const categories = await getItemListService.execute({
 			user_id: "0000-0000-0000-00000"
 		});

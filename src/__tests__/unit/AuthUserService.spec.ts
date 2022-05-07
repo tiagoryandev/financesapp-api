@@ -3,18 +3,25 @@ import IUsersRepository from "../../repositories/IUsersRepository";
 import CreateUserService from "../../services/CreateUserService";
 import AuthUserService from "../../services/AuthUserService";
 
-describe("Create User Service", () => {
+describe("service: Create User", () => {
 	let usersRepository: IUsersRepository;
 	let authUserService: AuthUserService;
 	let createUserService: CreateUserService;
 
-	beforeAll(() => {
+	beforeAll(async () => {
 		usersRepository = new UsersRepositoryInMemory();
 		authUserService = new AuthUserService(usersRepository);
 		createUserService = new CreateUserService(usersRepository);
+
+		await createUserService.execute({
+			first_name: "FirstName",
+			last_name: "LastName",
+			email: "auth_correct_credentials@auth_user_service.test",
+			password: "password_correct"
+		});
 	});
 
-	it("Should not be able to authenticate with account not exists", async () => {
+	test("Will not be able to authenticate without an existing account.", async () => {
 		const result = await authUserService.execute({
 			email: "user_not_exists@auth_user_service.test",
 			password: "password_test"
@@ -24,16 +31,9 @@ describe("Create User Service", () => {
 		expect(result.code).toBe("NOT_FOUND_USER");
 	});
 
-	it("Should not be able to authenticate with email or password incorrects", async () => {
-		await createUserService.execute({
-			first_name: "FirstName",
-			last_name: "LastName",
-			email: "auth_incorrect_credentials@auth_user_service.test",
-			password: "password_test"
-		});
-
+	test("Will not be able to authenticate with incorrect email or password.", async () => {
 		const result = await authUserService.execute({
-			email: "auth_incorrect_credentials@auth_user_service.test",
+			email: "auth_correct_credentials@auth_user_service.test",
 			password: "password_incorrect_test"
 		});
 
@@ -41,14 +41,7 @@ describe("Create User Service", () => {
 		expect(result.code).toBe("EMAIL_OR_PASSWORD_INCORRECT");
 	});
 
-	it("Should be able to authenticate with email and password corrects", async () => {
-		await createUserService.execute({
-			first_name: "FirstName",
-			last_name: "LastName",
-			email: "auth_correct_credentials@auth_user_service.test",
-			password: "password_correct"
-		});
-
+	test("Will be possible to authenticate with correct email and password.", async () => {
 		const result = await authUserService.execute({
 			email: "auth_correct_credentials@auth_user_service.test",
 			password: "password_correct"

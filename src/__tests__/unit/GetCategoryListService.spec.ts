@@ -2,7 +2,7 @@ import ICategoriesRepository from "../../repositories/ICategoriesRepository";
 import CategoriesRepositoryInMemory from "../../repositories/in-memory/CategoriesRepositoryInMemory";
 import GetCategoryListService from "../../services/GetCategoryListService";
 
-describe("Get Category List Service", () => {
+describe("service: Get Category List", () => {
 	let categoriesRepository: ICategoriesRepository;
 	let getCategoryListService: GetCategoryListService;
 
@@ -11,7 +11,7 @@ describe("Get Category List Service", () => {
 		getCategoryListService = new GetCategoryListService(categoriesRepository);
 	});
 
-	it("Should be able to get the category list with user id", async () => {
+	test("Will be possible to select the list of categories of a user by id.", async () => {
 		const categories = await getCategoryListService.execute({
 			user_id: "0000-0000-0000-00000"
 		});
