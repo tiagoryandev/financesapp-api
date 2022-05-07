@@ -1,12 +1,14 @@
 export default {
 	bail: true,
 	clearMocks: true,
+	collectCoverage: true,
+	coverageDirectory: "coverage",
 	coverageProvider: "v8",
-	transform: {
-		"^.+\\.(t)sx?$": ["@swc/jest"],
-	},
+	setupFiles: ["dotenv/config"],
 	testMatch: [
-		"**/*.spec.ts"
+		"**/**/*.spec.ts"
 	],
-	setupFiles: ["dotenv/config"]
+	transform: {
+		"^.+\\.ts?$": ["@swc/jest"],
+	},
 };

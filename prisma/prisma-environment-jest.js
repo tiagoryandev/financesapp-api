@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-
 const NodeEnvironment = require("jest-environment-node");
 const { v4: uuid } = require("uuid");
 const { execSync } = require("child_process");
