@@ -6,11 +6,11 @@ import request from "supertest";
 
 import App from "../../app";
 
-describe("Get Category List Controller", () => {
+describe("controller: Get Category List", () => {
 	const app = new App().app;
 	const api = request(app);
 
-	it("Should be able to get the category list", async () => {
+	test("Will be possible to get the category list", async () => {
 		await api.post("/users").send({
 			first_name: "FirstName",
 			last_name: "LastName",

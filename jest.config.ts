@@ -6,7 +6,7 @@ export default {
 	coverageProvider: "v8",
 	setupFiles: ["dotenv/config"],
 	testMatch: [
-		"**/unit/*.spec.ts"
+		"**/**/*.spec.ts"
 	],
 	transform: {
 		"^.+\\.ts?$": ["@swc/jest"],

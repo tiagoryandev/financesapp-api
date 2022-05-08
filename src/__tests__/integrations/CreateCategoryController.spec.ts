@@ -6,11 +6,13 @@ import request from "supertest";
 
 import App from "../../app";
 
-describe("Create Category Controller", () => {
+describe("controller: Create Category", () => {
+	let userToken: string; 
+
 	const app = new App().app;
 	const api = request(app);
-    
-	it("Should not be able to create a new category with type invalid", async () => {
+
+	beforeAll(async () => {
 		await api.post("/users").send({
 			first_name: "FirstName",
 			last_name: "LastName",
@@ -23,7 +25,28 @@ describe("Create Category Controller", () => {
 			password: "12345"
 		});
 
-		const response = await api.post("/categories").set("Authorization", "Bearer " + body.token).send({
+		userToken = "Bearer " + body.token;
+	});
+    
+	test("Will not be possible to create a new category without submitting and name and type.", async () => {
+		const response = await api.post("/categories").set("Authorization", userToken);
+
+		expect(response.status).toBe(400);
+		expect(response.body.code).toBe("INVALID_PARAMS");
+	});
+
+	test("Will not be possible to create a new category with data with invalid types.", async () => {
+		const response = await api.post("/categories").set("Authorization", userToken).send({
+			name: 123,
+			type: true
+		});
+
+		expect(response.status).toBe(400);
+		expect(response.body.code).toBe("INVALID_TYPES");
+	});
+
+	test("Will not be possible to create a new category with the invalid category type.", async () => {
+		const response = await api.post("/categories").set("Authorization", userToken).send({
 			name: "CategoryName",
 			type: "invalid_type"
 		});
@@ -32,20 +55,18 @@ describe("Create Category Controller", () => {
 		expect(response.body.code).toBe("INVALID_CATEGORY_TYPE");
 	});
 
-	it("Should able to create a new category with credentials corrects", async () => {
-		await api.post("/users").send({
-			first_name: "FirstName",
-			last_name: "LastName",
-			email: "user_create@create_category_controller.test",
-			password: "12345"
+	test("Will not be possible to create a new category with the name shorter than 2 or longer than 32 characters.", async () => {
+		const response = await api.post("/categories").set("Authorization", userToken).send({
+			name: "CategoryName12345678912344624324111241241",
+			type: "expense"
 		});
 
-		const { body } = await api.post("/auth").send({
-			email: "user_create@create_category_controller.test",
-			password: "12345"
-		});
+		expect(response.status).toBe(400);
+		expect(response.body.code).toBe("MAX_OR_MIN_NAME_LENGTH");
+	});
 
-		const response = await api.post("/categories").set("Authorization", "Bearer " + body.token).send({
+	test("Will be possible to create a new category with correct data.", async () => {
+		const response = await api.post("/categories").set("Authorization", userToken).send({
 			name: "CategoryName",
 			type: "income"
 		});
