@@ -4,8 +4,8 @@ import CreateUserController from "../controllers/CreateUserController";
 
 export default () => {
 	const usersRepository = new PrismaUsersRepository();
-	const createUser = new CreateUserService(usersRepository);
-	const createUserController = new CreateUserController(createUser);
+	const createUserService = new CreateUserService(usersRepository);
+	const createUserController = new CreateUserController(createUserService);
 
 	return createUserController;
 };

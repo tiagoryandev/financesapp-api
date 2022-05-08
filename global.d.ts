@@ -6,6 +6,7 @@ export declare global {
             DATABASE_URL: string;
             PORT: string;
             JWT_SECRET_KEY: string;
+            ADMIN_SECRET_KEY: string;
         }
     }
 }

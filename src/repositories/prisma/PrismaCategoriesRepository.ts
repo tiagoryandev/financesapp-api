@@ -11,7 +11,7 @@ class PrismaCategoriesRepository implements ICategoriesRepository {
 				type,
 				log_categories: {
 					create: {
-						type: "CREATED",
+						type: "CATEGORY_CREATED",
 						user_id
 					}
 				}

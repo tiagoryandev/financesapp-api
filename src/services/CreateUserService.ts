@@ -5,13 +5,14 @@ interface IUserRequest {
     first_name: string;
     last_name: string;
     email: string;
+	role?: "USER" | "ADMIN";
     password: string;
 }
 
 export default class CreateUserService {
 	constructor(private usersRepository: IUsersRepository) { }
 
-	async execute({ first_name, last_name, email, password }: IUserRequest) {
+	async execute({ first_name, last_name, email, password, role = "USER" }: IUserRequest) {
 		const userAlreadyExists = await this.usersRepository.exists("email", email);
 
 		if (userAlreadyExists) return {
@@ -24,6 +25,7 @@ export default class CreateUserService {
 			first_name,
 			last_name,
 			email,
+			role,
 			password
 		});
 

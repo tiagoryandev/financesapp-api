@@ -6,8 +6,8 @@ import CreateCategoryController from "../controllers/CreateCategoryController";
 export default () => {
 	const usersRepository = new PrismaUsersRepository();
 	const categoriesRepository = new PrismaCategoriesRepository();
-	const createCategory = new CreateCategoryService(usersRepository, categoriesRepository);
-	const createCategoryController = new CreateCategoryController(createCategory);
+	const createCategoryService = new CreateCategoryService(usersRepository, categoriesRepository);
+	const createCategoryController = new CreateCategoryController(createCategoryService);
 
 	return createCategoryController;
 };

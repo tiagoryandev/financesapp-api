@@ -4,8 +4,8 @@ import AuthUserController from "../controllers/AuthUserController";
 
 export default () => {
 	const usersRepository = new PrismaUsersRepository();
-	const authUser = new AuthUserService(usersRepository);
-	const authUserController = new AuthUserController(authUser);
+	const authUserService = new AuthUserService(usersRepository);
+	const authUserController = new AuthUserController(authUserService);
 
 	return authUserController;
 };

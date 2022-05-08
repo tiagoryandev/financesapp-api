@@ -1,6 +1,15 @@
 -- CreateEnum
 CREATE TYPE "Role" AS ENUM ('USER', 'ADMIN');
 
+-- CreateEnum
+CREATE TYPE "TypeLogUser" AS ENUM ('USER_CREATED', 'FIRST_NAME_UPDATED', 'LAST_NAME_UPDATED', 'EMAIL_UPDATED', 'PASSWORD_UPDATED', 'ROLE_UPDATED', 'USER_DELETED');
+
+-- CreateEnum
+CREATE TYPE "TypeLogCategory" AS ENUM ('CATEGORY_CREATED', 'NAME_UPDATED', 'TYPE_UPDATED', 'CATEGORY_DELETED');
+
+-- CreateEnum
+CREATE TYPE "TypeLogItem" AS ENUM ('ITEM_CREATED', 'TITLE_UPDATED', 'NOTE_UPDATED', 'VALUE_UPDATED', 'ITEM_DELETED');
+
 -- CreateTable
 CREATE TABLE "users" (
     "id" TEXT NOT NULL,
@@ -46,7 +55,7 @@ CREATE TABLE "categories" (
 CREATE TABLE "log_users" (
     "id" SERIAL NOT NULL,
     "user_id" TEXT NOT NULL,
-    "type" TEXT NOT NULL,
+    "type" "TypeLogUser" NOT NULL,
     "before_value" TEXT,
     "after_value" TEXT,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -59,7 +68,7 @@ CREATE TABLE "log_categories" (
     "id" SERIAL NOT NULL,
     "user_id" TEXT NOT NULL,
     "category_id" INTEGER NOT NULL,
-    "type" TEXT NOT NULL,
+    "type" "TypeLogCategory" NOT NULL,
     "before_value" TEXT,
     "after_value" TEXT,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -72,7 +81,7 @@ CREATE TABLE "log_items" (
     "id" SERIAL NOT NULL,
     "user_id" TEXT NOT NULL,
     "item_id" INTEGER NOT NULL,
-    "type" TEXT NOT NULL,
+    "type" "TypeLogItem" NOT NULL,
     "before_value" TEXT,
     "after_value" TEXT,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,

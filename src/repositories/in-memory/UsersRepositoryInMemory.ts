@@ -7,14 +7,14 @@ import IUsersRepository, { Options } from "../IUsersRepository";
 class UsersRepositoryInMemory implements IUsersRepository {
 	private users: User[] = [];
 
-	async create({ first_name, last_name, email, password }: User) {
+	async create({ first_name, last_name, email, password, role = "USER" }: User) {
 		const passwordMath = await hash(password, 8);
 
 		const user: User = {
 			id: uuid(),
 			first_name,
 			last_name,
-			role: "USER",
+			role,
 			email,
 			is_checked: false,
 			password: passwordMath,
@@ -36,6 +36,10 @@ class UsersRepositoryInMemory implements IUsersRepository {
 		const user = this.users.some((user) => user[option] === value);
 
 		return user;
+	}
+
+	async getAll(): Promise<User[]> {
+		return this.users;	
 	}
 }
 

@@ -14,7 +14,7 @@ class PrismaItemsRepository implements IItemsRepository {
 				created_at,
 				log_items: {
 					create: {
-						type: "CREATED",
+						type: "ITEM_CREATED",
 						user_id
 					}
 				}

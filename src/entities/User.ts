@@ -5,7 +5,7 @@ class User {
 	role?: "USER" | "ADMIN";
 	email: string;
 	is_checked?: boolean;
-	password: string;
+	password?: string;
 	created_at?: Date;
 	updated_at?: Date;
 }

@@ -58,25 +58,25 @@ model Category {
 }
 
 model LogUser {
-    id           Int      @id @default(autoincrement())
+    id           Int         @id @default(autoincrement())
     user_id      String
-    type         String
+    type         TypeLogUser
     before_value String?
     after_value  String?
-    created_at   DateTime @default(now())
+    created_at   DateTime    @default(now())
 
     user User? @relation(fields: [user_id], references: [id])
     @@map("log_users")
 }
 
 model LogCategory {
-    id           Int      @id @default(autoincrement())
+    id           Int             @id @default(autoincrement())
     user_id      String
     category_id  Int
-    type         String
+    type         TypeLogCategory
     before_value String?
     after_value  String?
-    created_at   DateTime @default(now())
+    created_at   DateTime        @default(now())
 
     user     User?     @relation(fields: [user_id], references: [id])
     category Category? @relation(fields: [category_id], references: [id])
@@ -84,13 +84,13 @@ model LogCategory {
 }
 
 model LogItem {
-    id           Int      @id @default(autoincrement())
+    id           Int         @id @default(autoincrement())
     user_id      String
     item_id      Int
-    type         String
+    type         TypeLogItem
     before_value String?
     after_value  String?
-    created_at   DateTime @default(now())
+    created_at   DateTime    @default(now())
 
     user User? @relation(fields: [user_id], references: [id])
     item Item? @relation(fields: [item_id], references: [id])
@@ -100,4 +100,29 @@ model LogItem {
 enum Role {
     USER
     ADMIN
+}
+
+enum TypeLogUser {
+    USER_CREATED
+    FIRST_NAME_UPDATED
+    LAST_NAME_UPDATED
+    EMAIL_UPDATED
+    PASSWORD_UPDATED
+    ROLE_UPDATED
+    USER_DELETED
+}
+
+enum TypeLogCategory {
+    CATEGORY_CREATED
+    NAME_UPDATED
+    TYPE_UPDATED
+    CATEGORY_DELETED
+}
+
+enum TypeLogItem {
+    ITEM_CREATED
+    TITLE_UPDATED
+    NOTE_UPDATED
+    VALUE_UPDATED
+    ITEM_DELETED
 }
