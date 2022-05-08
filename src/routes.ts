@@ -1,6 +1,6 @@
 import express from "express";
 
-import ensureUserAuthentication from "./middlewares/ensureUserAuthentication";
+import ensureAuthenticated from "./middlewares/ensureAuthenticated";
 
 import GetUserModule from "./modules/GetUserModule";
 import GetCategoryListModule from "./modules/GetCategoryListModule";
@@ -12,13 +12,13 @@ import CreateItemModule from "./modules/CreateItemModule";
 
 const router = express.Router();
 
-router.get("/@me", ensureUserAuthentication, (request, response) => GetUserModule().execute(request, response));
-router.get("/categories", ensureUserAuthentication, (request, response) => GetCategoryListModule().execute(request, response));
-router.get("/items", ensureUserAuthentication, (request, response) => GetItemListModule().execute(request, response));
+router.get("/@me", ensureAuthenticated, (request, response) => GetUserModule().execute(request, response));
+router.get("/categories", ensureAuthenticated, (request, response) => GetCategoryListModule().execute(request, response));
+router.get("/items", ensureAuthenticated, (request, response) => GetItemListModule().execute(request, response));
 
 router.post("/users", (request, response) => CreateUserModule().execute(request, response));
 router.post("/auth", (request, response) => AuthUserModule().execute(request, response));
-router.post("/categories", ensureUserAuthentication, (request, response) => CreateCategoryModule().execute(request, response));
-router.post("/items", ensureUserAuthentication, (request, response) => CreateItemModule().execute(request, response));
+router.post("/categories", ensureAuthenticated, (request, response) => CreateCategoryModule().execute(request, response));
+router.post("/items", ensureAuthenticated, (request, response) => CreateItemModule().execute(request, response));
 
 export default router;
