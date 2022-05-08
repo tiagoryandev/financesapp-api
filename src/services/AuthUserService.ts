@@ -32,7 +32,7 @@ export default class AuthUserService {
 
 		const token = sign({
 			email: user.email
-		}, process.env.JWT_SECRET_KEY, {
+		}, process.env.JWT_USER_SECRET_KEY, {
 			subject: user.id,
 			expiresIn: "7d"
 		});

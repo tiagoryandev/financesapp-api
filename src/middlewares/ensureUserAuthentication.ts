@@ -21,7 +21,7 @@ export default async (request: Request, response: Response, next: NextFunction) 
 	const [, token] = authToken.split(" ");
 
 	try {
-		const { sub, email } = verify(token, process.env.JWT_SECRET_KEY) as IPayload;
+		const { sub, email } = verify(token, process.env.JWT_USER_SECRET_KEY) as IPayload;
     
 		request.user_id = sub;
 		request.user_email = email;
