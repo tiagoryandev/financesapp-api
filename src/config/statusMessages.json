@@ -23,6 +23,7 @@
         "EMAIL_OR_PASSWORD_INCORRECT": "",
         "TOKEN_EXPIRED": "",
         "TOKEN_GENERATED": "",
+        "TOKEN_INVALID": "",
         "PERMISSION_DENIED": ""
     },
     "created": {

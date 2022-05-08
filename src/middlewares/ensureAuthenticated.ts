@@ -18,10 +18,17 @@ export default async (request: Request, response: Response, next: NextFunction) 
 			message: statusCode["NOT_AUTHENTICATED"]
 		});
 
-	const [, token] = authToken.split(" ");
+	const [typeToken, accessToken] = authToken.trim().split(" ");
+
+	if (typeToken !== "Bearer")
+		return response.status(401).json({
+			status: 401,
+			code: "TOKEN_INVALID",
+			message: statusCode.authentication.TOKEN_INVALID
+		});
 
 	try {
-		const { sub, email } = verify(token, process.env.JWT_SECRET_KEY) as IPayload;
+		const { sub, email } = verify(accessToken, process.env.JWT_SECRET_KEY) as IPayload;
     
 		request.user_id = sub;
 		request.user_email = email;

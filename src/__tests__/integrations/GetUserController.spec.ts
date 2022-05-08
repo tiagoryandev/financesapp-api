@@ -17,6 +17,13 @@ describe("controller: Get User", () => {
 		expect(response.body.code).toBe("NOT_AUTHENTICATED");
 	});
 
+	test("Will not possible to search user with access token type invalid.", async () => {
+		const response = await api.get("/@me").set("Authorization", "TypeInvalid token.invalid");
+
+		expect(response.status).toBe(401);
+		expect(response.body.code).toBe("TOKEN_INVALID");
+	});
+
 	test("Will be possible to search user without the access token expired.", async () => {
 		const response = await api.get("/@me").set("Authorization", "Bearer token.invalid");
 
