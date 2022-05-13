@@ -13,8 +13,8 @@ import CreateItemModule from "./modules/CreateItemModule";
 
 const router = express.Router();
 
-router.get("/@me", ensureAuthenticated, (request, response) => GetUserModule().execute(request, response));
 router.get("/users", ensureAuthenticated, (request, response) => GetUserListModule().execute(request, response));
+router.get("/users/@me", ensureAuthenticated, (request, response) => GetUserModule().execute(request, response));
 router.get("/categories", ensureAuthenticated, (request, response) => GetCategoryListModule().execute(request, response));
 router.get("/items", ensureAuthenticated, (request, response) => GetItemListModule().execute(request, response));
 

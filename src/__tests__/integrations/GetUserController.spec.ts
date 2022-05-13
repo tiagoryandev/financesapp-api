@@ -11,21 +11,21 @@ describe("controller: Get User", () => {
 	const api = request(app);
 
 	test("Will be possible to search user without the access token expired.", async () => {
-		const response = await api.get("/@me");
+		const response = await api.get("/users/@me");
 
 		expect(response.status).toBe(401);
 		expect(response.body.code).toBe("NOT_AUTHENTICATED");
 	});
 
 	test("Will not possible to search user with access token type invalid.", async () => {
-		const response = await api.get("/@me").set("Authorization", "TypeInvalid token.invalid");
+		const response = await api.get("/users/@me").set("Authorization", "TypeInvalid token.invalid");
 
 		expect(response.status).toBe(401);
 		expect(response.body.code).toBe("TOKEN_INVALID");
 	});
 
 	test("Will be possible to search user without the access token expired.", async () => {
-		const response = await api.get("/@me").set("Authorization", "Bearer token.invalid");
+		const response = await api.get("/users/@me").set("Authorization", "Bearer token.invalid");
 
 		expect(response.status).toBe(401);
 		expect(response.body.code).toBe("TOKEN_EXPIRED");
@@ -44,7 +44,7 @@ describe("controller: Get User", () => {
 			password: "12345"
 		});
 
-		const response = await api.get("/@me").set("Authorization", "Bearer " + body.token);
+		const response = await api.get("/users/@me").set("Authorization", "Bearer " + body.token);
 
 		expect(response.status).toBe(200);
 		expect(response.body.code).toBe("USER_SEARCHED");
