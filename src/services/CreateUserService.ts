@@ -1,18 +1,18 @@
 import IUsersRepository from "../repositories/IUsersRepository";
 import statusMessages from "../config/statusMessages.json";
 
-interface IUserRequest {
+type RequestData = {
     first_name: string;
     last_name: string;
     email: string;
 	role?: "USER" | "ADMIN";
     password: string;
-}
+};
 
 export default class CreateUserService {
 	constructor(private usersRepository: IUsersRepository) { }
 
-	async execute({ first_name, last_name, email, password, role = "USER" }: IUserRequest) {
+	async execute({ first_name, last_name, email, password, role = "USER" }: RequestData) {
 		const userAlreadyExists = await this.usersRepository.exists("email", email);
 
 		if (userAlreadyExists) return {

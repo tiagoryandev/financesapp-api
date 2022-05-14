@@ -3,19 +3,19 @@ import ICategoriesRepository from "../repositories/ICategoriesRepository";
 import IUsersRepository from "../repositories/IUsersRepository";
 import statusMessages from "../config/statusMessages.json";
 
-interface IItemRequest {
+type RequestData = {
     user_id: string;
     title: string;
     note: string;
     value: number;
     category_id: number;
 	created_at: Date;
-}
+};
 
 export default class CreateItemService {
 	constructor(private usersRepository: IUsersRepository, private categoriesRepository: ICategoriesRepository, private itemsRepository: IItemsRepository) { }
 
-	async execute({ user_id, title, note, value, category_id, created_at }: IItemRequest) {
+	async execute({ user_id, title, note, value, category_id, created_at }: RequestData) {
 		const userAlreadyExists = await this.usersRepository.exists("id", user_id);
 		
 		if (!userAlreadyExists) return {
@@ -24,7 +24,7 @@ export default class CreateItemService {
 			message: statusMessages.conflict.NOT_FOUND_USER
 		};
 
-		const categoryAlreadyExists = await this.categoriesRepository.exists(category_id, user_id);
+		const categoryAlreadyExists = await this.categoriesRepository.exists(category_id);
 
 		if (!categoryAlreadyExists) return {
 			status: 401,

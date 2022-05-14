@@ -5,7 +5,7 @@ import statusMessages from "../config/statusMessages.json";
 type RequestData = {
     user_id: string;
     item_id: number;
-}
+};
 
 export default class DeleteItemService {
 	constructor(private usersRepository: IUsersRepository, private itemsRepository: IItemsRepository) { }

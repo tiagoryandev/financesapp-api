@@ -7,7 +7,7 @@ import statusMessages from "../config/statusMessages.json";
 type RequestData = {
     email: string;
     password: string;
-}
+};
 
 export default class AuthUserController {
 	constructor(private authUserService: AuthUserService) { }

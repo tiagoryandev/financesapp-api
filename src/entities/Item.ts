@@ -1,4 +1,4 @@
-class Item { 
+export default class Item { 
 	id?: number;
 	user_id: string;
 	title: string;
@@ -8,5 +8,3 @@ class Item {
 	created_at: Date;
 	updated_at?: Date;
 }
-
-export default Item;

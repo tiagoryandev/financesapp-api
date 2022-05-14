@@ -1,4 +1,4 @@
-class Category {
+export default class Category {
 	id?: number;
 	user_id: string;
 	name: string;
@@ -6,5 +6,3 @@ class Category {
 	created_at?: Date;
 	updated_at?: Date;
 }
-
-export default Category;

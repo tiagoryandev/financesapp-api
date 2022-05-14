@@ -2,14 +2,14 @@ import ICategoriesRepository from "../repositories/ICategoriesRepository";
 
 import statusMessages from "../config/statusMessages.json";
 
-interface ICategoryRequest {
+type RequestData = {
     user_id: string;
-}
+};
 
 export default class GetCategoryListService {
 	constructor(private categoriesRepository: ICategoriesRepository) { }
 
-	async execute({ user_id }: ICategoryRequest) {
+	async execute({ user_id }: RequestData) {
 		const categories = await this.categoriesRepository.getAll(user_id);
 
 		return {

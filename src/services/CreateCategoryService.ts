@@ -2,16 +2,16 @@ import IUsersRepository from "../repositories/IUsersRepository";
 import ICategoriesRepository from "../repositories/ICategoriesRepository";
 import statusMessages from "../config/statusMessages.json";
 
-interface ICategoryRequest {
+type RequestData = {
     user_id: string;
     name: string;
     type: string;
-}
+};
 
 export default class CreateCategoryService {
 	constructor(private usersRepository: IUsersRepository, private categoriesRepository: ICategoriesRepository) { }
 
-	async execute({ user_id, name, type }: ICategoryRequest) {
+	async execute({ user_id, name, type }: RequestData) {
 		const userAlreadyExists = await this.usersRepository.exists("id", user_id);
 		
 		if (!userAlreadyExists) return {

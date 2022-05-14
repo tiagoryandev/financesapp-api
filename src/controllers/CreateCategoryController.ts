@@ -9,7 +9,7 @@ type RequestData = {
 };
 
 export default class CreateCategoryController {
-	constructor(private createCategory: CreateCategoryService) { }
+	constructor(private createCategoryService: CreateCategoryService) { }
 
 	async execute(request: Request, response: Response) {
 		const { user_id } = request;
@@ -49,7 +49,7 @@ export default class CreateCategoryController {
 				message: statusMessages.invalid.MAX_OR_MIN_NAME_LENGTH
 			});
 
-		const result = await this.createCategory.execute(data);
+		const result = await this.createCategoryService.execute(data);
 
 		return response.status(result.status).json(result);
 	}

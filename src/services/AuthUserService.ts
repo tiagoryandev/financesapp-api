@@ -4,15 +4,15 @@ import { sign } from "jsonwebtoken";
 import IUsersRepository from "../repositories/IUsersRepository";
 import statusMessages from "../config/statusMessages.json";
 
-interface IUserRequest {
+type RequestData = {
     email: string;
     password: string;
-}
+};
 
 export default class AuthUserService {
 	constructor(private usersRepository: IUsersRepository) { }
 
-	async execute({ email, password }: IUserRequest) {
+	async execute({ email, password }: RequestData) {
 		const userAlreadyExists = await this.usersRepository.exists("email", email);
 
 		if (!userAlreadyExists) return {

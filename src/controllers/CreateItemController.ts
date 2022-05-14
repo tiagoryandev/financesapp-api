@@ -10,10 +10,10 @@ type RequestData = {
     value: number;
     category_id: number;
     created_at: string;
-}
+};
 
 export default class CreateItemController {
-	constructor(private createItem: CreateItemService) { }
+	constructor(private createItemService: CreateItemService) { }
 
 	async execute(request: Request, response: Response) {
 		const { user_id } = request;
@@ -63,7 +63,7 @@ export default class CreateItemController {
 				message: statusMessages.invalid.MAX_OR_MIN_NOTE_LENGTH
 			});
 
-		const result = await this.createItem.execute(data);
+		const result = await this.createItemService.execute(data);
 
 		return response.status(result.status).json(result);
 	}

@@ -9,10 +9,10 @@ type RequestData = {
     last_name: string;
     email: string;
     password: string;
-}
+};
 
 export default class CreateUserController {
-	constructor(private createUser: CreateUserService) { }
+	constructor(private createUserService: CreateUserService) { }
 
 	async execute(request: Request, response: Response) {
 		const { first_name, last_name, email, password }: RequestData = request.body;
@@ -52,7 +52,7 @@ export default class CreateUserController {
 				message: statusMessages.invalid.INVALID_EMAIL
 			});
 
-		const result = await this.createUser.execute(data);
+		const result = await this.createUserService.execute(data);
         
 		return response.status(result.status).json(result);
 	}

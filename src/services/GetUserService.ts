@@ -2,14 +2,14 @@ import IUsersRepository from "../repositories/IUsersRepository";
 
 import statusMessages from "../config/statusMessages.json";
 
-interface IUserRequest {
+type RequestData = {
     id: string;
-}
+};
 
 export default class GetUserService {
 	constructor(private usersRepository: IUsersRepository) { }
 
-	async execute({ id }: IUserRequest) {
+	async execute({ id }: RequestData) {
 		const userAlreadyExists = await this.usersRepository.exists("id", id);
 
 		if (!userAlreadyExists) return {

@@ -19,8 +19,8 @@ class CategoriesRepositoryInMemory implements ICategoriesRepository {
 		return category;
 	}
 
-	async exists(id: number, user_id: string): Promise<boolean> {
-		const category = this.categories.some((c) => c.id === id && c.user_id === user_id);
+	async exists(id: number): Promise<boolean> {
+		const category = this.categories.some((c) => c.id === id);
 
 		return category;
 	}
