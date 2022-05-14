@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 
 import AuthUserService from "../services/AuthUserService";
 import { validateEmail } from "../helpers/validation";
-import statusMessages from "../config/statusMessages.json";
 
 type RequestData = {
     email: string;
@@ -18,15 +17,13 @@ export default class AuthUserController {
 		if (!email || !password)
 			return response.status(400).json({
 				status: 400,
-				code: "INVALID_PARAMS",
-				message: statusMessages.invalid.INVALID_PARAMS
+				code: "INVALID_PARAMS"
 			});
             
 		if (typeof email != "string" || typeof password != "string")
 			return response.status(400).json({
 				status: 400,
-				code: "INVALID_TYPES",
-				message: statusMessages.invalid.INVALID_TYPES
+				code: "INVALID_TYPES"
 			});
 
 		const data = {
@@ -37,8 +34,7 @@ export default class AuthUserController {
 		if (!validateEmail.test(data.email))
 			return response.status(400).json({
 				status: 400,
-				code: "INVALID_EMAIL",
-				message: statusMessages.invalid.INVALID_EMAIL
+				code: "INVALID_EMAIL"
 			});
 
 		const result = await this.authUserService.execute(data);

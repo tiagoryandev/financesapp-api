@@ -1,8 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { verify } from "jsonwebtoken";
 
-import statusCode from "../config/statusMessages.json";
-
 interface IPayload {
     sub: string;
     email: string;
@@ -14,8 +12,7 @@ export default async (request: Request, response: Response, next: NextFunction) 
 	if (!authToken)
 		return response.status(401).json({
 			status: 401,
-			code: "NOT_AUTHENTICATED",
-			message: statusCode["NOT_AUTHENTICATED"]
+			code: "NOT_AUTHENTICATED"
 		});
 
 	const [typeToken, accessToken] = authToken.trim().split(" ");
@@ -23,8 +20,7 @@ export default async (request: Request, response: Response, next: NextFunction) 
 	if (typeToken !== "Bearer")
 		return response.status(401).json({
 			status: 401,
-			code: "TOKEN_INVALID",
-			message: statusCode.authentication.TOKEN_INVALID
+			code: "TOKEN_INVALID"
 		});
 
 	try {
@@ -37,8 +33,7 @@ export default async (request: Request, response: Response, next: NextFunction) 
 	} catch (err) {
 		return response.status(401).json({
 			status: 401,
-			code: "TOKEN_EXPIRED",
-			message: statusCode["TOKEN_EXPIRED"]
+			code: "TOKEN_EXPIRED"
 		});
 	}
 };

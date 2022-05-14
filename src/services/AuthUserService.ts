@@ -2,7 +2,6 @@ import { compare } from "bcryptjs";
 import { sign } from "jsonwebtoken";
 
 import IUsersRepository from "../repositories/IUsersRepository";
-import statusMessages from "../config/statusMessages.json";
 
 type RequestData = {
     email: string;
@@ -17,8 +16,7 @@ export default class AuthUserService {
 
 		if (!userAlreadyExists) return {
 			status: 401,
-			code: "NOT_FOUND_USER",
-			message: statusMessages.conflict.NOT_FOUND_USER
+			code: "NOT_FOUND_USER"
 		};
 
 		const user = await this.usersRepository.get("email", email);
@@ -26,8 +24,7 @@ export default class AuthUserService {
 
 		if (!passwordMatch) return {
 			status: 401,
-			code: "EMAIL_OR_PASSWORD_INCORRECT",
-			message: statusMessages.authentication.EMAIL_OR_PASSWORD_INCORRECT
+			code: "EMAIL_OR_PASSWORD_INCORRECT"
 		};
 
 		const token = sign({
@@ -41,7 +38,6 @@ export default class AuthUserService {
 		return {
 			status: 200,
 			code: "TOKEN_GENERATED",
-			message: statusMessages.authentication.TOKEN_GENERATED,
 			token,
 			user: {
 				id: user.id,

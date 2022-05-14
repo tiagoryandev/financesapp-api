@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 
 import CreateItemService from "../services/CreateItemService";
 import { isDate } from "../helpers/validation";
-import statusMessages from "../config/statusMessages.json";
 
 type RequestData = {
     title: string;
@@ -22,22 +21,19 @@ export default class CreateItemController {
 		if (!title || !note || !value || !category_id || !created_at)
 			return response.status(400).json({
 				status: 400,
-				code: "INVALID_PARAMS",
-				message: statusMessages.invalid.INVALID_PARAMS
+				code: "INVALID_PARAMS"
 			});
 
 		if (typeof title != "string" || typeof note != "string" || typeof value != "number" || typeof category_id != "number" || typeof created_at != "string")
 			return response.status(400).json({
 				status: 400,
-				code: "INVALID_TYPES",
-				message: statusMessages.invalid.INVALID_TYPES
+				code: "INVALID_TYPES"
 			});
 
 		if (!isDate(created_at.trim().split(" ")[0])) 
 			return response.status(400).json({
 				status: 400,
-				code: "INVALID_DATE",
-				message: statusMessages.invalid.INVALID_DATE
+				code: "INVALID_DATE"
 			});
 
 		const data = {
@@ -52,15 +48,13 @@ export default class CreateItemController {
 		if (data.title.length < 2 || data.title.length > 32)
 			return response.status(400).json({
 				status: 400,
-				code: "MAX_OR_MIN_TITLE_LENGTH",
-				message: statusMessages.invalid.MAX_OR_MIN_TITLE_LENGTH
+				code: "MAX_OR_MIN_TITLE_LENGTH"
 			});
 
 		if (data.note.length < 2 || data.note.length > 2048)
 			return response.status(400).json({
 				status: 400,
-				code: "MAX_OR_MIN_NOTE_LENGTH",
-				message: statusMessages.invalid.MAX_OR_MIN_NOTE_LENGTH
+				code: "MAX_OR_MIN_NOTE_LENGTH"
 			});
 
 		const result = await this.createItemService.execute(data);

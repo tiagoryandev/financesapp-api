@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 
 import CreateCategoryService from "../services/CreateCategoryService";
-import statusMessages from "../config/statusMessages.json";
 
 type RequestData = {
     name: string;
@@ -18,22 +17,19 @@ export default class CreateCategoryController {
 		if (!name || !type)
 			return response.status(400).json({
 				status: 400,
-				code: "INVALID_PARAMS",
-				message: statusMessages.invalid.INVALID_PARAMS
+				code: "INVALID_PARAMS"
 			});
 
 		if (typeof name != "string" || typeof type != "string")
 			return response.status(400).json({
 				status: 400,
-				code: "INVALID_TYPES",
-				message: statusMessages.invalid.INVALID_TYPES
+				code: "INVALID_TYPES"
 			});
 
 		if (!["expense", "income"].includes(type))
 			return response.status(400).json({
 				status: 400,
-				code: "INVALID_CATEGORY_TYPE",
-				message: statusMessages.invalid.INVALID_CATEGORY_TYPE
+				code: "INVALID_CATEGORY_TYPE"
 			});
 
 		const data = {
@@ -45,8 +41,7 @@ export default class CreateCategoryController {
 		if (data.name.length < 2 || data.name.length > 32)
 			return response.status(400).json({
 				status: 400,
-				code: "MAX_OR_MIN_NAME_LENGTH",
-				message: statusMessages.invalid.MAX_OR_MIN_NAME_LENGTH
+				code: "MAX_OR_MIN_NAME_LENGTH"
 			});
 
 		const result = await this.createCategoryService.execute(data);

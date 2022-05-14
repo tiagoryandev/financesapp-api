@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 
 import DeleteCategoryService from "../services/DeleteCategoryService";
-import statusMessages from "../config/statusMessages.json";
 
 export default class DeleteCategoryController {
 	constructor(private deleteCategoryService: DeleteCategoryService) { }
@@ -13,8 +12,7 @@ export default class DeleteCategoryController {
 		if (isNaN(parseInt(category_id)))
 			return response.status(400).json({
 				status: 400,
-				code: "INVALID_TYPES",
-				message: statusMessages.invalid.INVALID_TYPES
+				code: "INVALID_TYPES"
 			});
 
 		const result = await this.deleteCategoryService.execute({

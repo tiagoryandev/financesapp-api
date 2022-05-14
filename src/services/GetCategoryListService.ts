@@ -1,7 +1,5 @@
 import ICategoriesRepository from "../repositories/ICategoriesRepository";
 
-import statusMessages from "../config/statusMessages.json";
-
 type RequestData = {
     user_id: string;
 };
@@ -15,7 +13,6 @@ export default class GetCategoryListService {
 		return {
 			status: 200,
 			code: "CATEGORY_LIST_SELECTED",
-			message: statusMessages.getting.CATEGORY_LIST_SELECTED,
 			categories
 		};
 	}

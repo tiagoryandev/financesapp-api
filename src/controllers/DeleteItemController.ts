@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 
 import DeleteItemService from "../services/DeleteItemService";
-import statusMessages from "../config/statusMessages.json";
 
 export default class DeleteItemController {
 	constructor(private deleteItemService: DeleteItemService) { }
@@ -13,8 +12,7 @@ export default class DeleteItemController {
 		if (isNaN(parseInt(item_id)))
 			return response.status(400).json({
 				status: 400,
-				code: "INVALID_TYPES",
-				message: statusMessages.invalid.INVALID_TYPES
+				code: "INVALID_TYPES"
 			});
 
 		const result = await this.deleteItemService.execute({

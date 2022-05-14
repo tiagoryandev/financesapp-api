@@ -1,7 +1,5 @@
 import IUsersRepository from "../repositories/IUsersRepository";
 
-import statusMessages from "../config/statusMessages.json";
-
 type RequestData = {
 	user_id: string;
 };
@@ -14,14 +12,12 @@ export default class GetUserListService {
 
 		if (!user) return {
 			status: 401,
-			code: "NOT_FOUND_USER",
-			message: statusMessages.conflict.NOT_FOUND_USER
+			code: "NOT_FOUND_USER"
 		};
 
 		if (user.role !== "ADMIN") return {
 			status: 401,
-			code: "PERMISSION_DENIED",
-			message: statusMessages.authentication.PERMISSION_DENIED
+			code: "PERMISSION_DENIED"
 		};
 
 		const users = await this.usersRepository.getAll();
@@ -29,7 +25,6 @@ export default class GetUserListService {
 		return {
 			status: 200,
 			code: "USER_LIST_SEARCHED",
-			message: statusMessages.getting.USER_LIST_SEARCHED,
 			users
 		};
 	}

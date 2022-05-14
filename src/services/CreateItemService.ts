@@ -1,7 +1,6 @@
 import IItemsRepository from "../repositories/IItemsRepository";
 import ICategoriesRepository from "../repositories/ICategoriesRepository";
 import IUsersRepository from "../repositories/IUsersRepository";
-import statusMessages from "../config/statusMessages.json";
 
 type RequestData = {
     user_id: string;
@@ -20,16 +19,14 @@ export default class CreateItemService {
 		
 		if (!userAlreadyExists) return {
 			status: 401,
-			code: "NOT_FOUND_USER",
-			message: statusMessages.conflict.NOT_FOUND_USER
+			code: "NOT_FOUND_USER"
 		};
 
 		const categoryAlreadyExists = await this.categoriesRepository.exists(category_id);
 
 		if (!categoryAlreadyExists) return {
 			status: 401,
-			code: "NOT_FOUND_CATEGORY",
-			message: statusMessages.conflict.NOT_FOUND_CATEGORY
+			code: "NOT_FOUND_CATEGORY"
 		};
 
 		const item = await this.itemsRepository.create({
@@ -44,7 +41,6 @@ export default class CreateItemService {
 		return {
 			status: 201,
 			code: "ITEM_CREATED",
-			message: statusMessages.created.ITEM_CREATED,
 			item
 		};
 	}

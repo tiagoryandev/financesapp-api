@@ -1,7 +1,5 @@
 import IUsersRepository from "../repositories/IUsersRepository";
 
-import statusMessages from "../config/statusMessages.json";
-
 type RequestData = {
     id: string;
 };
@@ -14,8 +12,7 @@ export default class GetUserService {
 
 		if (!userAlreadyExists) return {
 			status: 401,
-			code: "NOT_FOUND_USER",
-			message: statusMessages.conflict.NOT_FOUND_USER
+			code: "NOT_FOUND_USER"
 		};
 
 		const user = await this.usersRepository.get("id", id);
@@ -23,7 +20,6 @@ export default class GetUserService {
 		return {
 			status: 200,
 			code: "USER_SEARCHED",
-			messages: statusMessages.getting.USER_SEARCHED,
 			user: {
 				id: user.id,
 				first_name: user.first_name,
