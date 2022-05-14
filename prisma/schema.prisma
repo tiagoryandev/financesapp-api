@@ -65,21 +65,21 @@ model LogUser {
     after_value  String?
     created_at   DateTime    @default(now())
 
-    user User? @relation(fields: [user_id], references: [id])
+    user User? @relation(fields: [user_id], references: [id], onDelete: Cascade)
     @@map("log_users")
 }
 
 model LogCategory {
     id           Int             @id @default(autoincrement())
-    user_id      String
-    category_id  Int
+    user_id      String?
+    category_id  Int?
     type         TypeLogCategory
     before_value String?
     after_value  String?
     created_at   DateTime        @default(now())
 
-    user     User?     @relation(fields: [user_id], references: [id])
-    category Category? @relation(fields: [category_id], references: [id])
+    user     User?     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+    category Category? @relation(fields: [category_id], references: [id], onDelete: Cascade)
     @@map("log_categories")
 }
 
@@ -92,8 +92,8 @@ model LogItem {
     after_value  String?
     created_at   DateTime    @default(now())
 
-    user User? @relation(fields: [user_id], references: [id])
-    item Item? @relation(fields: [item_id], references: [id])
+    user User? @relation(fields: [user_id], references: [id], onDelete: Cascade)
+    item Item? @relation(fields: [item_id], references: [id], onDelete: Cascade)
     @@map("log_items")
 }
 
@@ -109,14 +109,12 @@ enum TypeLogUser {
     EMAIL_UPDATED
     PASSWORD_UPDATED
     ROLE_UPDATED
-    USER_DELETED
 }
 
 enum TypeLogCategory {
     CATEGORY_CREATED
     NAME_UPDATED
     TYPE_UPDATED
-    CATEGORY_DELETED
 }
 
 enum TypeLogItem {
@@ -124,5 +122,4 @@ enum TypeLogItem {
     TITLE_UPDATED
     NOTE_UPDATED
     VALUE_UPDATED
-    ITEM_DELETED
 }

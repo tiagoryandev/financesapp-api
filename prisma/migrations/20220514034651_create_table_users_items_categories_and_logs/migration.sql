@@ -2,13 +2,13 @@
 CREATE TYPE "Role" AS ENUM ('USER', 'ADMIN');
 
 -- CreateEnum
-CREATE TYPE "TypeLogUser" AS ENUM ('USER_CREATED', 'FIRST_NAME_UPDATED', 'LAST_NAME_UPDATED', 'EMAIL_UPDATED', 'PASSWORD_UPDATED', 'ROLE_UPDATED', 'USER_DELETED');
+CREATE TYPE "TypeLogUser" AS ENUM ('USER_CREATED', 'FIRST_NAME_UPDATED', 'LAST_NAME_UPDATED', 'EMAIL_UPDATED', 'PASSWORD_UPDATED', 'ROLE_UPDATED');
 
 -- CreateEnum
-CREATE TYPE "TypeLogCategory" AS ENUM ('CATEGORY_CREATED', 'NAME_UPDATED', 'TYPE_UPDATED', 'CATEGORY_DELETED');
+CREATE TYPE "TypeLogCategory" AS ENUM ('CATEGORY_CREATED', 'NAME_UPDATED', 'TYPE_UPDATED');
 
 -- CreateEnum
-CREATE TYPE "TypeLogItem" AS ENUM ('ITEM_CREATED', 'TITLE_UPDATED', 'NOTE_UPDATED', 'VALUE_UPDATED', 'ITEM_DELETED');
+CREATE TYPE "TypeLogItem" AS ENUM ('ITEM_CREATED', 'TITLE_UPDATED', 'NOTE_UPDATED', 'VALUE_UPDATED');
 
 -- CreateTable
 CREATE TABLE "users" (
@@ -66,8 +66,8 @@ CREATE TABLE "log_users" (
 -- CreateTable
 CREATE TABLE "log_categories" (
     "id" SERIAL NOT NULL,
-    "user_id" TEXT NOT NULL,
-    "category_id" INTEGER NOT NULL,
+    "user_id" TEXT,
+    "category_id" INTEGER,
     "type" "TypeLogCategory" NOT NULL,
     "before_value" TEXT,
     "after_value" TEXT,
@@ -102,16 +102,16 @@ ALTER TABLE "items" ADD CONSTRAINT "items_id_fkey" FOREIGN KEY ("id") REFERENCES
 ALTER TABLE "categories" ADD CONSTRAINT "categories_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "log_users" ADD CONSTRAINT "log_users_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "log_users" ADD CONSTRAINT "log_users_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "log_categories" ADD CONSTRAINT "log_categories_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "log_categories" ADD CONSTRAINT "log_categories_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "log_categories" ADD CONSTRAINT "log_categories_category_id_fkey" FOREIGN KEY ("category_id") REFERENCES "categories"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "log_categories" ADD CONSTRAINT "log_categories_category_id_fkey" FOREIGN KEY ("category_id") REFERENCES "categories"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "log_items" ADD CONSTRAINT "log_items_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "log_items" ADD CONSTRAINT "log_items_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "log_items" ADD CONSTRAINT "log_items_item_id_fkey" FOREIGN KEY ("item_id") REFERENCES "items"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "log_items" ADD CONSTRAINT "log_items_item_id_fkey" FOREIGN KEY ("item_id") REFERENCES "items"("id") ON DELETE CASCADE ON UPDATE CASCADE;

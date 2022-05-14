@@ -30,6 +30,10 @@ class CategoriesRepositoryInMemory implements ICategoriesRepository {
 
 		return categories;
 	}
+
+	async delete(user_id: string, category_id: number): Promise<void> {
+		this.categories = this.categories.filter(category => category.id !== category_id);
+	}
 }
 
 export default CategoriesRepositoryInMemory;

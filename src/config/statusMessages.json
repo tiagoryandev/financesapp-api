@@ -41,5 +41,8 @@
         "USER_LIST_SEARCHED": "",
         "CATEGORY_LIST_SELECTED": "",
         "ITEM_LIST_SELECTED": ""
+    },
+    "deleted": {
+        "CATEGORY_DELETED": ""
     }
 }
