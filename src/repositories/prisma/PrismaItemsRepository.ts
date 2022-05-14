@@ -33,6 +33,24 @@ class PrismaItemsRepository implements IItemsRepository {
 
 		return items;
 	}
+
+	async exists(item_id: number): Promise<boolean> {
+		const item = await prismaClient.item.findUnique({
+			where: {
+				id: item_id
+			}
+		});
+
+		return !!item;
+	}
+
+	async delete(item_id: number): Promise<void> {
+		await prismaClient.item.delete({
+			where: {
+				id: item_id
+			}
+		});
+	}
 }
 
 export default PrismaItemsRepository;

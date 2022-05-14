@@ -43,6 +43,7 @@
         "ITEM_LIST_SELECTED": ""
     },
     "deleted": {
-        "CATEGORY_DELETED": ""
+        "CATEGORY_DELETED": "",
+        "ITEM_DELETED": ""
     }
 }

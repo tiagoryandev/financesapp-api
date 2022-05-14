@@ -26,6 +26,16 @@ class ItemsRepositoryInMemory implements IItemsRepository {
 
 		return items;
 	}
+
+	async exists(item_id: number): Promise<boolean> {
+		const item = this.items.some(item => item.id === item_id);
+
+		return item;
+	}
+
+	async delete(item_id: number): Promise<void> {
+		this.items = this.items.filter(item => item.id !== item_id);
+	}
 }
 
 export default ItemsRepositoryInMemory;

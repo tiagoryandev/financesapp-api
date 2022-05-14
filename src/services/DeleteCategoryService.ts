@@ -27,7 +27,7 @@ export default class DeleteCategoryService {
 			message: statusMessages.conflict.NOT_FOUND_CATEGORY
 		};
 
-		await this.categoriesRepository.delete(user_id, category_id);
+		await this.categoriesRepository.delete(category_id);
 
 		return {
 			status: 200,
