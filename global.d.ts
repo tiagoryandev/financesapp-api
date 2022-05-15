@@ -6,7 +6,10 @@ export declare global {
             DATABASE_URL: string;
             PORT: string;
             JWT_SECRET_KEY: string;
-            ADMIN_SECRET_KEY: string;
+            STORAGE_TYPE: "local" | "memory";
+            PAYPAL_MODE: string;
+            PAYPAL_CLIENT_ID: string;
+            PAYPAL_SECRET_KEY: string;
         }
     }
 }

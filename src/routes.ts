@@ -1,5 +1,6 @@
 import * as express from "express";
 
+import handleUploadAvatar from "./middlewares/handleUploadAvatar";
 import ensureAuthenticated from "./middlewares/ensureAuthenticated";
 
 import GetUserModule from "./modules/GetUserModule";
@@ -27,5 +28,14 @@ router.post("/items", ensureAuthenticated, (request, response) => CreateItemModu
 
 router.delete("/categories/:category_id", ensureAuthenticated, (request: express.Request<{ category_id: string }>, response) => DeleteCategoryModule().execute(request, response));
 router.delete("/items/:item_id", ensureAuthenticated, (request: express.Request<{ item_id: string }>, response) => DeleteItemModule().execute(request, response));
+
+// Endpoint for Upload Files (No Testing)
+router.post("/uploads", handleUploadAvatar, (request, response) => {
+	console.log(request.file);
+
+	return response.json({
+		message: "OK!"
+	});
+});
 
 export default router;

@@ -1,13 +1,15 @@
 import "colors";
-import dotenv from "dotenv";
+import "dotenv/config";
 import App from "./app";
-
-if (process.env.NODE_ENV !== "production") {
-	dotenv.config();
-}
 
 const { app } = new App();
 
-app.listen(process.env.PORT, () => {
-	console.log("[SERVER]".yellow + " Server is Running on Port: " + process.env.PORT.gray);
+const server = app.listen(process.env.PORT, () => {
+	console.log(`[SERVER: ${process.pid}]`.yellow + " Server is Running on Port: " + process.env.PORT.gray);
+});
+
+process.on("SIGINT", () => {
+	console.log(`[SERVER: ${process.pid}]`.red + " Server Ending...");
+
+	server.close(() => process.exit());
 });

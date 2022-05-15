@@ -1,4 +1,5 @@
 node_modules
+temp/uploads
 build
 coverage
 package-lock.json
