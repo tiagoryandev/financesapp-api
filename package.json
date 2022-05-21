@@ -1,7 +1,7 @@
 {
   "name": "api",
   "version": "1.0.0",
-  "description": "The Api for manager the authentication.",
+  "description": "The API for the Finances App.",
   "main": "./build/cluster.js",
   "scripts": {
     "clean": "rimraf ./build",
@@ -10,7 +10,7 @@
     "prisma:reset": "prisma migrate reset",
     "husky:pc": "lint-staged",
     "husky:pcm": "exec < /dev/tty && git-cz --hook || true",
-    "dev": "ts-node-dev --respawn --transpile-only --ignore-watch ./node_modules ./src/server.ts",
+    "dev": "nodemon ./src/server.ts",
     "build": "npm run clean && npm run prisma:deploy && tsc --project ./tsconfig.json",
     "start": "node .",
     "test": "jest",
@@ -48,10 +48,11 @@
     "husky": "^7.0.4",
     "jest": "^27.5.1",
     "lint-staged": "^12.3.6",
+    "nodemon": "^2.0.16",
     "prisma": "^3.14.0",
     "rimraf": "^3.0.2",
+    "sucrase": "^3.21.0",
     "supertest": "^6.2.2",
-    "ts-node-dev": "^1.1.8",
     "typescript": "^4.6.2"
   },
   "dependencies": {
