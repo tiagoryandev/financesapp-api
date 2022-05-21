@@ -8,13 +8,7 @@ class PrismaCategoriesRepository implements ICategoriesRepository {
 			data: {
 				user_id,
 				name,
-				type,
-				log_categories: {
-					create: {
-						type: "CATEGORY_CREATED",
-						user_id
-					}
-				}
+				type
 			}
 		});
 

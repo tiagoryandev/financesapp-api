@@ -14,12 +14,7 @@ class PrismaUsersRepository implements IUsersRepository {
 				last_name,
 				email,
 				role,
-				password: passwordMath,
-				log_users: {
-					create: {
-						type: "USER_CREATED"
-					}
-				}
+				password: passwordMath
 			}
 		});
 

@@ -11,13 +11,7 @@ class PrismaItemsRepository implements IItemsRepository {
 				note,
 				value,
 				category_id,
-				created_at,
-				log_items: {
-					create: {
-						type: "ITEM_CREATED",
-						user_id
-					}
-				}
+				created_at
 			}
 		});
 
