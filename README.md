@@ -2,6 +2,8 @@
 
 ## :thinking: Introduction
 
+This is a repository to store all the API for managing authentication, creating users, items and categories. Search for single or multiple records at once, update items and categories and remove both.
+
 The project is based on [Node.js](https://nodejs.org/), [TypeScript](https://www.typescriptlang.org/) as language, [Prisma](https://www.prisma.io/) as ORM, [Express](https://expressjs.com/pt-br/) as Framework and [PostgreSQL](https://www.postgresql.org/) as Database.
 
 ## :door: Available routes
