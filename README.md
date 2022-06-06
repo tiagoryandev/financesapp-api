@@ -11,6 +11,7 @@ The project is based on [Node.js](https://nodejs.org/), [TypeScript](https://www
 - `GET /users/@me` - Fetch authenticated user information.
 - `GET /categories` - Fetch the Authenticated User Category List.
 - `GET /items` - Fetch the Authenticated User Item List
+- `POST /auth` - Generate User Access Token.
 - `POST /users` - Create a new user.
 - `POST /categories` - Create a new category.
 - `POST /items` - Create a new item.
