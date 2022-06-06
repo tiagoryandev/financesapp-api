@@ -17,7 +17,7 @@ export default class DeleteItemService {
 			code: "NOT_FOUND_USER"
 		};
 
-		const itemAlreadyExists = await this.itemsRepository.exists(item_id);
+		const itemAlreadyExists = await this.itemsRepository.exists(item_id, user_id);
 
 		if (!itemAlreadyExists) return {
 			status: 401,

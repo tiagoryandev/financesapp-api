@@ -28,10 +28,11 @@ class PrismaItemsRepository implements IItemsRepository {
 		return items;
 	}
 
-	async exists(item_id: number): Promise<boolean> {
-		const item = await prismaClient.item.findUnique({
+	async exists(item_id: number, user_id: string): Promise<boolean> {
+		const item = await prismaClient.item.findFirst({
 			where: {
-				id: item_id
+				id: item_id,
+				user_id
 			}
 		});
 
