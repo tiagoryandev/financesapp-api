@@ -35,7 +35,7 @@ model Item {
     updated_at  DateTime @default(now())
 
     user       User?     @relation(fields: [user_id], references: [id])
-    categories Category? @relation(fields: [id], references: [id], onDelete: Cascade)
+    categories Category? @relation(fields: [category_id], references: [id], onDelete: Cascade)
 
     @@map("items")
 }
