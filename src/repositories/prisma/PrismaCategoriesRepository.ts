@@ -15,10 +15,11 @@ class PrismaCategoriesRepository implements ICategoriesRepository {
 		return category;
 	}
 
-	async exists(id: number): Promise<boolean> {
+	async exists(id: number, user_id: string): Promise<boolean> {
 		const category = await prismaClient.category.findFirst({
 			where: {
-				id
+				id,
+				user_id
 			}
 		});
 

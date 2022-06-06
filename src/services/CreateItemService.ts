@@ -22,7 +22,7 @@ export default class CreateItemService {
 			code: "NOT_FOUND_USER"
 		};
 
-		const categoryAlreadyExists = await this.categoriesRepository.exists(category_id);
+		const categoryAlreadyExists = await this.categoriesRepository.exists(category_id, user_id);
 
 		if (!categoryAlreadyExists) return {
 			status: 401,
