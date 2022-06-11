@@ -1,9 +1,8 @@
 import "colors";
-import os from "os";
 import cluster from "cluster";
 
 const startPrimaryProcess = () => {
-	const cpus = os.cpus().length * 2;
+	const cpus = process.env.WEB_CONCURRENCY || 1;
     
 	console.log(`[PRIMARY: ${process.pid}]`.yellow + " Process Primary is Running.");
 	console.log("[CUSTER]".yellow + " Generate " + `${cpus}`.gray + " Workers.");
