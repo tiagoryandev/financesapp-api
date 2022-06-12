@@ -12,6 +12,7 @@ import CreateCategoryModule from "./modules/CreateCategoryModule";
 import CreateItemModule from "./modules/CreateItemModule";
 import DeleteCategoryModule from "./modules/DeleteCategoryModule";
 import DeleteItemModule from "./modules/DeleteItemModule";
+import NotFoundEndpointModule from "./modules/NotFoundEndpointModule";
 
 const router = express.Router();
 
@@ -27,5 +28,7 @@ router.post("/items", ensureAuthenticated, (request, response) => CreateItemModu
 
 router.delete("/categories/:category_id", ensureAuthenticated, (request: express.Request<{ category_id: string }>, response) => DeleteCategoryModule().execute(request, response));
 router.delete("/items/:item_id", ensureAuthenticated, (request: express.Request<{ item_id: string }>, response) => DeleteItemModule().execute(request, response));
+
+router.all("*", (request, response) => NotFoundEndpointModule().execute(request, response));
 
 export default router;
